@@ -1,2 +1,5 @@
-package PACKAGE_NAME;public class GuestObj {
+
+
+public class GuestObj {
+    //TODO: Create guest objects
 }
