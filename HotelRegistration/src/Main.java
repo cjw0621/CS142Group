@@ -1,11 +1,21 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-
+        Scanner sc = new Scanner(System.in);
         String exit = "//";
-        System.out.println("Welcome!\nPress Enter:");
+
+        while(true) {
+            System.out.println("Welcome!\nPress Enter:");
+            String userInput = sc.nextLine();
+
+            if(userInput.equals("") || userInput.equals(" ")){
+                break;
+            }
+        }
+
+        SignInClass.signIn();
 
         while(true){
 
@@ -25,13 +35,6 @@ public class Main {
 
                 break;
             }
-
-
-
-
-
-
-
         }
     }
 }
