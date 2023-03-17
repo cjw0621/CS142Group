@@ -11,7 +11,7 @@ public class EmployeeInfo {
     public static boolean accountCreated = false;
     public static final HashMap<String, String> employeeDB = new HashMap<>();
     public static final HashMap<String, String> managerDB = new HashMap<>();
-    public static  LinkedList <String> employeeTracker = new LinkedList<String>();
+    public static  LinkedList <String> employeeTracker = new LinkedList<>();
 
 
     public EmployeeInfo(String username, String password, boolean isManager) {
@@ -59,7 +59,6 @@ public class EmployeeInfo {
         }
     }
 
-
     public String getUsername() {
         return username;
     }
@@ -78,24 +77,15 @@ public class EmployeeInfo {
 
     private void setEmployeeDB(String username, String password, boolean isManager){
         if(!isManager) {
-            this.employeeDB.put(username,password);
+            employeeDB.put(username,password);
         } else {
-            this.managerDB.put(username,password);
+            managerDB.put(username,password);
         }
 
     }
 
     private void setEmployeeTracker(String username){
         employeeTracker.add(username);
-    }
-
-
-    public HashMap<String, String> getEmployeeDB(){
-        return this.employeeDB;
-    }
-
-    public HashMap<String, String> getManagerDB(){
-        return this.managerDB;
     }
 
 }

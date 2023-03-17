@@ -16,6 +16,7 @@ public class Main {
         }
 
         SignInClass.signIn();
+        Database.writeEmployeeDBtoTxt();
 
         while(true){
 

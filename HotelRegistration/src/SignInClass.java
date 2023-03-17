@@ -30,11 +30,6 @@ public class SignInClass {
                         if(EmployeeInfo.accountCreated) {
                             System.out.println("Account successfully created");
 
-                            //**** Used for checks. do not include in final code ****
-                            for (int i = 0; i < EmployeeInfo.employeeTracker.size(); i++) {
-                                System.out.println("Username: "+EmployeeInfo.employeeTracker.get(i) + "Password: " +
-                                        EmployeeInfo.managerDB.get(EmployeeInfo.employeeTracker.get(i)));
-                            }
                             break;
                         }
                     }
