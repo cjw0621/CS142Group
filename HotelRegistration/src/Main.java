@@ -16,6 +16,7 @@ public class Main {
         }
 
         SignInClass.signIn();
+
         Database.writeEmployeeDBtoTxt();
 
         while(true){
@@ -24,12 +25,15 @@ public class Main {
             String input = sc.nextLine();
 
             if(input.equals("1")){
+                //insert check in and check out method here
 
             }
             else if(input.equals("2")){
+                //insert check available room method here
 
             }
             else if(input.equals("3")){
+                //insert configuration method here
 
             }
             else if(input.equals(exit)){

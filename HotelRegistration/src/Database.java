@@ -5,10 +5,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 public class Database {
-    final static String EMPLOYEE_DB = "EmployeeDB.txt";
-    final static String MANAGER_DB ="ManagerDB.txt";
-    final static  File EMPLOYEE_DB_FILE = new File(EMPLOYEE_DB);
-    final static  File MANAGER_DB_FILE = new File(MANAGER_DB);
+   private final static String EMPLOYEE_DB = "EmployeeDB.txt";
+   private final static String MANAGER_DB ="ManagerDB.txt";
+   private final static  File EMPLOYEE_DB_FILE = new File(EMPLOYEE_DB);
+   private final static  File MANAGER_DB_FILE = new File(MANAGER_DB);
 
 
     public static void writeEmployeeDBtoTxt(){
@@ -142,7 +142,7 @@ public class Database {
                     readDBFile("e");
                 }
 
-            } catch (IOException e) {
+            } catch(IOException e) {
 
                 System.out.println(e + "\n");
                 System.out.println("File was not found. Creating a new File...\n");
