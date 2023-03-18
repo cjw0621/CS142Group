@@ -5,10 +5,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 public class Database {
-    final static String EMPLOYEE_DB_FILE = "EmployeeDB.txt";
-    final static String MANAGER_DB_FILE ="ManagerDB.txt";
-    final static  File employeeDb = new File(EMPLOYEE_DB_FILE);
-    final static  File managerDb = new File(MANAGER_DB_FILE);
+    final static String EMPLOYEE_DB = "EmployeeDB.txt";
+    final static String MANAGER_DB ="ManagerDB.txt";
+    final static  File EMPLOYEE_DB_FILE = new File(EMPLOYEE_DB);
+    final static  File MANAGER_DB_FILE = new File(MANAGER_DB);
 
 
     public static void writeEmployeeDBtoTxt(){
@@ -17,32 +17,30 @@ public class Database {
 
         try{
             if(EmployeeInfo.isManager) {
-                if (managerDb.createNewFile()) {
-                    bf = new BufferedWriter(new FileWriter(managerDb));
+                if (MANAGER_DB_FILE.createNewFile()) {
+                    bf = new BufferedWriter(new FileWriter(MANAGER_DB_FILE));
 
                     for (Map.Entry<String, String> entry : EmployeeInfo.managerDB.entrySet()) {
                         bf.write(entry.getKey() + ":" + entry.getValue());
                         bf.newLine();
                     }
-
-                    System.out.println("File Created Successfully");
                     bf.flush();
 
-                } else if (managerDb.exists()) {
+                } else if (MANAGER_DB_FILE.exists()) {
 
                     String username = EmployeeInfo.getUsername();
                     String password = EmployeeInfo.getPassword();
-
-                    System.out.println("File Already exists");
-
-                    Path path = Paths.get(MANAGER_DB_FILE);
+                    Path path = Paths.get(MANAGER_DB);
 
                     Files.write(path, (username + ":" + password).getBytes(), StandardOpenOption.APPEND);
                     Files.write(path, ("\n").getBytes(), StandardOpenOption.APPEND);
+                } else {
+                    System.out.println("uh-oh! Something Really Bad Happened!");
                 }
             } else {
-                if (employeeDb.createNewFile()) {
-                    bf = new BufferedWriter(new FileWriter(employeeDb));
+
+                if (EMPLOYEE_DB_FILE.createNewFile()) {
+                    bf = new BufferedWriter(new FileWriter(EMPLOYEE_DB_FILE));
 
                     for (Map.Entry<String, String> entry : EmployeeInfo.employeeDB.entrySet()) {
 
@@ -50,20 +48,19 @@ public class Database {
                         bf.newLine();
 
                     }
-                    System.out.println("File Created Successfully");
                     bf.flush();
 
-                } else if (employeeDb.exists()) {
+                } else if (EMPLOYEE_DB_FILE.exists()) {
 
                     String username = EmployeeInfo.getUsername();
                     String password = EmployeeInfo.getPassword();
-
-                    System.out.println("File Already exists");
-
-                    Path path = Paths.get(EMPLOYEE_DB_FILE);
+                    Path path = Paths.get(EMPLOYEE_DB);
 
                     Files.write(path, (username + ":" + password).getBytes(), StandardOpenOption.APPEND);
                     Files.write(path, ("\n").getBytes(), StandardOpenOption.APPEND);
+
+                }else {
+                    System.out.println("uh-oh! Something Really Bad Happened!");
                 }
             }
 
@@ -95,13 +92,11 @@ public class Database {
 
                 if (eOrM.toLowerCase().equals("e")) {
 
-                    FileReader frEm = new FileReader(employeeDb);
+                    FileReader frEm = new FileReader(EMPLOYEE_DB_FILE);
 
                     BufferedReader brEm = new BufferedReader(frEm);
 
                     String lineEm;
-
-                    System.out.println("Reading text file use FileReader");
 
                     while ((lineEm = brEm.readLine()) != null) {
                         String[] parts = lineEm.split(":");
@@ -121,11 +116,10 @@ public class Database {
 
 
                 } else if (eOrM.toLowerCase().equals("m")) {
-                    FileReader frMa = new FileReader(managerDb);
+                    FileReader frMa = new FileReader(MANAGER_DB_FILE);
 
                     BufferedReader brMa = new BufferedReader(frMa);
                     String lineMa;
-                    System.out.println("Reading Text File Using FileReader!");
 
                     while ((lineMa = brMa.readLine()) != null) {
 
