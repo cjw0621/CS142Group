@@ -36,6 +36,7 @@ public class Database {
                  } else {
                      //append to existing file
 
+
                  }
 
                  if (!fileEm.exists()) {
