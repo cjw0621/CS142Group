@@ -1,5 +1,3 @@
-import jdk.nashorn.internal.ir.annotations.Ignore;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -96,7 +94,7 @@ public class Database {
         }
     }
 
-    public static HashMap<String, String> readDBFile(boolean isManager) {
+    public static HashMap<String, String> readEmployeeDBFile(boolean isManager) {
 
         HashMap<String, String> employees = new HashMap<>();
         HashMap<String, String> managers = new HashMap<>();
@@ -155,7 +153,7 @@ public class Database {
 
                     System.out.println("Incorrect parameter\n");
                     System.out.println("Initializing Employee Database\n");
-                    readDBFile(false);
+                    readEmployeeDBFile(false);
                 }
 
 

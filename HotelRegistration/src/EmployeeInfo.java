@@ -34,7 +34,7 @@ public class EmployeeInfo {
     }
 
     public boolean userNameChk(String username){
-        if(Database.readDBFile(isManager).containsKey(username)){
+        if(Database.readEmployeeDBFile(isManager).containsKey(username)){
             System.out.println("Username has already been taken. Please try again.");
             return false;
         }

@@ -25,8 +25,8 @@ public class SignInClass {
                 System.out.print("Password: ");
                 String password = input.nextLine();
 
-                if (Database.readDBFile(false).containsKey(username) &&
-                        Database.readDBFile(false).get(username).equals(password)) {
+                if (Database.readEmployeeDBFile(false).containsKey(username) &&
+                        Database.readEmployeeDBFile(false).get(username).equals(password)) {
 
                     System.out.println("Welcome! ");
                     break;
