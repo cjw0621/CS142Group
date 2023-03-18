@@ -90,7 +90,7 @@ public class Database {
         while(true) {
             try {
 
-                if (eOrM.toLowerCase().equals("e")) {
+                if (eOrM.equalsIgnoreCase("e")) {
 
                     FileReader frEm = new FileReader(EMPLOYEE_DB_FILE);
 
@@ -115,7 +115,7 @@ public class Database {
                     return employees;
 
 
-                } else if (eOrM.toLowerCase().equals("m")) {
+                } else if (eOrM.equalsIgnoreCase("m")) {
                     FileReader frMa = new FileReader(MANAGER_DB_FILE);
 
                     BufferedReader brMa = new BufferedReader(frMa);
