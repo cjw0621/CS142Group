@@ -136,6 +136,10 @@ public class Database {
                     brMa.close();
                     frMa.close();
                     return managers;
+                }else{
+                    System.out.println("Incorrect parameter\n");
+                    System.out.println("Initializing Employee Database\n");
+                    readDBFile("e");
                 }
 
             } catch (IOException e) {
