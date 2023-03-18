@@ -1,63 +1,73 @@
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 public class Database {
-
     final static String EMPLOYEE_DB_FILE = "EmployeeDB.txt";
     final static String MANAGER_DB_FILE ="ManagerDB.txt";
+    final static  File employeeDb = new File(EMPLOYEE_DB_FILE);
+    final static  File managerDb = new File(MANAGER_DB_FILE);
+
 
     public static void writeEmployeeDBtoTxt(){
-        HashMap<String, String> managerDB = EmployeeInfo.managerDB;
-        HashMap<String, String> employeeDB = EmployeeInfo.employeeDB;
-        LinkedList<String> employeeManifest = EmployeeInfo.employeeTracker;
-
-        File fileEm = new File(EMPLOYEE_DB_FILE);
-        File fileMa = new File(MANAGER_DB_FILE);
 
         BufferedWriter bf = null;
 
         try{
-             for(int i = 0; i < employeeManifest.size(); i++) {
-                 if (!fileMa.exists()) {
-                     bf = new BufferedWriter(new FileWriter(fileMa));
+            if(EmployeeInfo.isManager) {
+                if (managerDb.createNewFile()) {
+                    bf = new BufferedWriter(new FileWriter(managerDb));
 
-                     for (Map.Entry<String, String> entry : managerDB.entrySet()) {
+                    for (Map.Entry<String, String> entry : EmployeeInfo.managerDB.entrySet()) {
+                        bf.write(entry.getKey() + ":" + entry.getValue());
+                        bf.newLine();
+                    }
 
-                         bf.write(entry.getKey() + ": " + entry.getValue());
-                         bf.newLine();
+                    System.out.println("File Created Successfully");
+                    bf.flush();
 
-                     }
-                     System.out.println("File Created Successfully");
-                     bf.flush();
-                 } else {
-                     //append to existing file
+                } else if (managerDb.exists()) {
 
+                    String username = EmployeeInfo.getUsername();
+                    String password = EmployeeInfo.getPassword();
 
-                 }
+                    System.out.println("File Already exists");
 
-                 if (!fileEm.exists()) {
-                     bf = new BufferedWriter(new FileWriter(fileEm));
+                    Path path = Paths.get(MANAGER_DB_FILE);
 
-                     for (Map.Entry<String, String> entry : employeeDB.entrySet()) {
+                    Files.write(path, (username + ":" + password).getBytes(), StandardOpenOption.APPEND);
+                    Files.write(path, ("\n").getBytes(), StandardOpenOption.APPEND);
+                }
+            } else {
+                if (employeeDb.createNewFile()) {
+                    bf = new BufferedWriter(new FileWriter(employeeDb));
 
-                         bf.write(entry.getKey() + ":" + entry.getValue());
-                         bf.newLine();
+                    for (Map.Entry<String, String> entry : EmployeeInfo.employeeDB.entrySet()) {
 
-                     }
-                     System.out.println("File Created Successfully");
-                     bf.flush();
-                 } else {
-                     //append to existing file
+                        bf.write( entry.getKey() + ":" + entry.getValue());
+                        bf.newLine();
 
+                    }
+                    System.out.println("File Created Successfully");
+                    bf.flush();
 
-                 }
-             }
-        }
+                } else if (employeeDb.exists()) {
 
+                    String username = EmployeeInfo.getUsername();
+                    String password = EmployeeInfo.getPassword();
+
+                    System.out.println("File Already exists");
+
+                    Path path = Paths.get(EMPLOYEE_DB_FILE);
+
+                    Files.write(path, (username + ":" + password).getBytes(), StandardOpenOption.APPEND);
+                    Files.write(path, ("\n").getBytes(), StandardOpenOption.APPEND);
+                }
+            }
+
+    }
         catch (IOException e){
             e.printStackTrace();
         }
@@ -75,26 +85,51 @@ public class Database {
         }
     }
 
-    public static void readDBFile() throws IOException{
+    public static List<String> readDBFile() throws IOException {
 
-        File employeeDb = new File(EMPLOYEE_DB_FILE);
+        List <String> list = new ArrayList<>(Collections.emptyList());
 
-       FileReader frEm = new FileReader(employeeDb);
+        if (employeeDb.createNewFile()) {
+
+            FileReader frEm = new FileReader(employeeDb);
+
+            BufferedReader brEm = new BufferedReader(frEm);
+
+            String lineEm;
+
+            System.out.println("Reading text file use FileReader");
+
+            while ((lineEm = brEm.readLine()) != null) {
+
+                System.out.println(lineEm);
+                list.add(lineEm);
+            }
+
+            brEm.close();
+            frEm.close();
+        }
 
 
-       BufferedReader brEm = new BufferedReader(frEm);
+        if(managerDb.createNewFile()){
+            FileReader frMa = new FileReader(managerDb);
 
-       String lineEm;
+            BufferedReader brMa = new BufferedReader(frMa);
+            String lineMa;
+            System.out.println("Reading Text File Using FileReader!");
 
-       System.out.println("Reading text file use FileReader");
+            while(( lineMa = brMa.readLine()) != null){
 
-       while((lineEm = brEm.readLine()) != null ){
-            System.out.println(lineEm);
-       }
-        brEm.close();
+                System.out.println(lineMa);
+            }
+            brMa.close();
+            frMa.close();
+        }
 
-        frEm.close();
+
+       return list;
+
     }
+
 
 
 

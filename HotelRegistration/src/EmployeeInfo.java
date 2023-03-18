@@ -6,22 +6,26 @@ This class creates an employee username and password if password created is vali
 used to verify that employee account was created.
 */
 public class EmployeeInfo {
-    private String username;
-    private String password;
+    private static String username;
+    private static String password;
+    public static boolean isManager = false;
     public static boolean accountCreated = false;
-    public static final HashMap<String, String> employeeDB = new HashMap<>();
-    public static final HashMap<String, String> managerDB = new HashMap<>();
+    public static HashMap<String, String> employeeDB = new HashMap<>();
+    public static HashMap<String, String> managerDB = new HashMap<>();
     public static  LinkedList <String> employeeTracker = new LinkedList<>();
+    public static int employeeCounter = 0;
 
 
     public EmployeeInfo(String username, String password, boolean isManager) {
 
-            if(passCheck(password)){
+        if(passCheck(password)){
                 setUsername(username);
                 setPassword(password);
+                setIsManager(isManager);
                 setEmployeeDB(username, password, isManager);
                 setEmployeeTracker(username);
                 accountCreated = true;
+                employeeCounter++;
 
             } else {
                 System.out.println("Account failed to be created.");
@@ -48,7 +52,7 @@ public class EmployeeInfo {
         }
 
         if(count >= 3){
-            this.password = password;
+            EmployeeInfo.password = password;
             return true;
 
         } else {
@@ -59,20 +63,26 @@ public class EmployeeInfo {
         }
     }
 
-    public String getUsername() {
+    public static String getUsername() {
         return username;
     }
 
     private void setUsername(String username) {
-        this.username = username;
+        EmployeeInfo.username = username;
     }
 
-    public String getPassword() {
+    public static String getPassword() {
         return password;
     }
 
     private void setPassword(String password) {
-        this.password = password;
+        EmployeeInfo.password = password;
+    }
+    private void setIsManager(boolean managerStatus){
+        isManager = managerStatus;
+    }
+    public boolean getIsManager(){
+        return isManager;
     }
 
     private void setEmployeeDB(String username, String password, boolean isManager){

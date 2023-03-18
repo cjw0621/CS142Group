@@ -1,2 +1,3 @@
-
-cjw:asdf123!@#
+newUser1:pass!2@3#4
+burgers: horn!@#123
+butts: itsCool123!@#
