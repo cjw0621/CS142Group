@@ -5,9 +5,12 @@ public class SignInClass {
     public static EmployeeInfo employee;
 
     public static void signIn() {
-        System.out.println("Hotel employee Sign-in: ");
-        System.out.println("1) Sign-in\n2) Create new user");
+        System.out.println("------------------------");
+        System.out.println("Hotel employee Sign-in:");
+        System.out.println("------------------------");
+        System.out.print("1) Sign-in\n2) Create new user\n> ");
         String userInput = input.nextLine();
+
 
         if (userInput.equals("1")) {
             System.out.print("Username: ");

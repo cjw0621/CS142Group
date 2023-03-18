@@ -85,52 +85,72 @@ public class Database {
         }
     }
 
-    public static List<String> readDBFile() throws IOException {
+    public static HashMap<String, String> readDBFile(String eOrM) {
 
-        List <String> list = new ArrayList<>(Collections.emptyList());
+        HashMap<String, String> employees = new HashMap<>();
+        HashMap<String, String> managers = new HashMap<>();
 
-        if (employeeDb.createNewFile()) {
+        while(true) {
+            try {
 
-            FileReader frEm = new FileReader(employeeDb);
+                if (eOrM.toLowerCase().equals("e")) {
 
-            BufferedReader brEm = new BufferedReader(frEm);
+                    FileReader frEm = new FileReader(employeeDb);
 
-            String lineEm;
+                    BufferedReader brEm = new BufferedReader(frEm);
 
-            System.out.println("Reading text file use FileReader");
+                    String lineEm;
 
-            while ((lineEm = brEm.readLine()) != null) {
+                    System.out.println("Reading text file use FileReader");
 
-                System.out.println(lineEm);
-                list.add(lineEm);
+                    while ((lineEm = brEm.readLine()) != null) {
+                        String[] parts = lineEm.split(":");
+
+                        String username = parts[0].trim();
+                        String password = parts[1].trim();
+
+                        if (!username.equals("") && !password.equals("")) {
+                            employees.put(username, password);
+                        }
+
+                    }
+
+                    brEm.close();
+                    frEm.close();
+                    return employees;
+
+
+                } else if (eOrM.toLowerCase().equals("m")) {
+                    FileReader frMa = new FileReader(managerDb);
+
+                    BufferedReader brMa = new BufferedReader(frMa);
+                    String lineMa;
+                    System.out.println("Reading Text File Using FileReader!");
+
+                    while ((lineMa = brMa.readLine()) != null) {
+
+                        String[] parts = lineMa.split(":");
+
+                        String username = parts[0].trim();
+                        String password = parts[1].trim();
+
+                        if (!username.equals("") && !password.equals("")) {
+                            managers.put(username, password);
+                        }
+
+                    }
+                    brMa.close();
+                    frMa.close();
+                    return managers;
+                }
+
+            } catch (IOException e) {
+
+                System.out.println(e + "\n");
+                System.out.println("File was not found. Creating a new File...\n");
+                SignInClass.signIn();
             }
-
-            brEm.close();
-            frEm.close();
         }
-
-
-        if(managerDb.createNewFile()){
-            FileReader frMa = new FileReader(managerDb);
-
-            BufferedReader brMa = new BufferedReader(frMa);
-            String lineMa;
-            System.out.println("Reading Text File Using FileReader!");
-
-            while(( lineMa = brMa.readLine()) != null){
-
-                System.out.println(lineMa);
-            }
-            brMa.close();
-            frMa.close();
-        }
-
-
-       return list;
-
     }
-
-
-
 
 }

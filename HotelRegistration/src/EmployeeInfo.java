@@ -43,9 +43,9 @@ public class EmployeeInfo {
            numbers[i] = s;
         }
 
-        for(int i = 0; i < symbol.length; i++) {
-            for (int j = 0; j < numbers.length; j++) {
-                if (password.contains(symbol[i]) && password.contains(numbers[j])) {
+        for (String s : symbol) {
+            for (String number : numbers) {
+                if (password.contains(s) && password.contains(number)) {
                     count++;
                 }
             }
@@ -80,9 +80,6 @@ public class EmployeeInfo {
     }
     private void setIsManager(boolean managerStatus){
         isManager = managerStatus;
-    }
-    public boolean getIsManager(){
-        return isManager;
     }
 
     private void setEmployeeDB(String username, String password, boolean isManager){
