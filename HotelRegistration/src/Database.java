@@ -180,9 +180,12 @@ public class Database {
                 }
 
 
-            } catch(IOException ignore) {}
+            } catch(IOException e) {
 
-            return new HashMap<>();
+                System.out.println("something happend here");
+            }
+
+        return new HashMap<>();
 
     }
 

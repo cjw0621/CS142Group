@@ -6,8 +6,6 @@ public class SignInClass {
 
     public static void signIn() {
 
-        HashMap<String,String > readEmployeeDB = Database.readEmployeeDBFile(false);
-        HashMap<String, String> readManagerDB = Database.readEmployeeDBFile(true);
 
         while (true) {
             if (EmployeeInfo.accountCreated) {
@@ -23,41 +21,46 @@ public class SignInClass {
 
 
             if (userInput.equals("1")) {
-                System.out.print("Username: \n>>");
+
+                HashMap<String,String > readEmployeeDB = Database.readEmployeeDBFile(false);
+                HashMap<String, String> readManagerDB = Database.readEmployeeDBFile(true);
+
+                System.out.print("Username: \n>> ");
                 String username = input.nextLine();
 
-                System.out.print("Password: \n>>");
+                System.out.print("Password: \n>> ");
                 String password = input.nextLine();
 
-                if (readEmployeeDB.containsKey(username) && readEmployeeDB.get(username).equals(password)) {
+                if (readEmployeeDB.containsKey(username) &&
+                        readEmployeeDB.get(username).equals(password)) {
 
-                    System.out.println("Welcome " + username);
+                    System.out.println("Welcome " + username + "!");
+                    break;
 
-                } else if (readManagerDB.containsKey(username) && readManagerDB.get(username).equals(password)) {
+                } else if (readManagerDB.containsKey(username) &&
+                        readManagerDB.get(username).equals(password)) {
 
-                    System.out.println("Welcome " + username);
+                    System.out.println("Welcome " + username + "!");
+                    break;
+                }
 
-
-                } else {
+               else {
 
                 System.out.println("Incorrect username or password. Please try again, or create an account.");
 
                 }
 
-                break;
-
-
             } else if(userInput.equals("2")) {
 
                 String username;
 
-                System.out.print("Enter New Username: \n>>");
+                System.out.print("Enter New Username: \n>> ");
                 username = input.nextLine();
 
-                System.out.print("Enter A Password (Please add add at least 3 numbers and or special characters): \n>>");
+                System.out.print("Enter A Password (Please add add at least 3 numbers and or special characters): \n>> ");
                 String password = input.nextLine();
 
-                System.out.print("Is This Employee A Manager? \n>>");
+                System.out.print("Is This Employee A Manager? \n>> ");
                 String isManager = input.nextLine();
 
                 isManager = isManager.toLowerCase();
@@ -68,6 +71,7 @@ public class SignInClass {
                     if(!EmployeeInfo.accountCreated) {
 
                         new EmployeeInfo(username, password, true);
+                        Database.writeEmployeeDBtoTxt();
                     }
 
                 } else if(isManager.equals("n") || isManager.equals("no")) {
@@ -75,20 +79,16 @@ public class SignInClass {
                     if(!EmployeeInfo.accountCreated) {
 
                         new EmployeeInfo(username, password, false);
+                        Database.writeEmployeeDBtoTxt();
                     }
 
                 }else{
 
                     System.out.println("Invalid Response. Please use either 'y' or 'n'.");
                 }
-
             }
-
-            Database.writeEmployeeDBtoTxt();
-
         }
-
-
     }
+
 
 }

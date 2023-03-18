@@ -23,7 +23,7 @@ public class Main {
 
         while(true){
 
-            System.out.print("1: Check In/Out A Guest\n2: Check Available Rooms\n3: Configuration\n>>");
+            System.out.print("1: Check In/Out A Guest\n2: Check Available Rooms\n3: Configuration\n>> ");
             String input = sc.nextLine();
 
             if(input.equals("1")){
