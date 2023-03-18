@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class SignInClass {
@@ -5,65 +6,79 @@ public class SignInClass {
 
     public static void signIn() {
 
+        HashMap<String,String > readEmployeeDB = Database.readEmployeeDBFile(false);
+        HashMap<String, String> readManagerDB = Database.readEmployeeDBFile(true);
+
         while (true) {
-            if(EmployeeInfo.accountCreated) {
-                System.out.println("Account successfully created");
+            if (EmployeeInfo.accountCreated) {
+                System.out.println("Account Successfully Created");
                 EmployeeInfo.accountCreated = false;
             }
 
             System.out.println("------------------------");
-            System.out.println("Hotel employee Sign-in:");
+            System.out.println("Hotel Employee Sign-In:");
             System.out.println("------------------------");
-            System.out.print("1) Sign-in\n2) Create new user\n>> ");
+            System.out.print("1) Sign-In\n2) Create New User\n>> ");
             String userInput = input.nextLine();
 
 
             if (userInput.equals("1")) {
-                System.out.print("Username: ");
+                System.out.print("Username: \n>>");
                 String username = input.nextLine();
 
-                System.out.print("Password: ");
+                System.out.print("Password: \n>>");
                 String password = input.nextLine();
 
-                if (Database.readEmployeeDBFile(false).containsKey(username) &&
-                        Database.readEmployeeDBFile(false).get(username).equals(password)) {
+                if (readEmployeeDB.containsKey(username) && readEmployeeDB.get(username).equals(password)) {
 
-                    System.out.println("Welcome! ");
-                    break;
+                    System.out.println("Welcome " + username);
+
+                } else if (readManagerDB.containsKey(username) && readManagerDB.get(username).equals(password)) {
+
+                    System.out.println("Welcome " + username);
+
 
                 } else {
 
-                    System.out.println("Incorrect username or password. Please try again, or create an account.");
+                System.out.println("Incorrect username or password. Please try again, or create an account.");
 
                 }
 
-            } else if (userInput.equals("2")) {
+                break;
+
+
+            } else if(userInput.equals("2")) {
 
                 String username;
 
-                System.out.println("Enter New Username: ");
+                System.out.print("Enter New Username: \n>>");
                 username = input.nextLine();
 
-                System.out.println("Enter A Password (Please add add at least 3 numbers and special characters): ");
+                System.out.print("Enter A Password (Please add add at least 3 numbers and or special characters): \n>>");
                 String password = input.nextLine();
 
-                System.out.print("Is this employee a manager? ");
+                System.out.print("Is This Employee A Manager? \n>>");
                 String isManager = input.nextLine();
 
                 isManager = isManager.toLowerCase();
 
 
-                if (isManager.equals("y") || isManager.equals("yes")) {
+                if(isManager.equals("y") || isManager.equals("yes")) {
+
                     if(!EmployeeInfo.accountCreated) {
+
                         new EmployeeInfo(username, password, true);
                     }
 
-                } else if (isManager.equals("n") || isManager.equals("no")) {
-                    if (!EmployeeInfo.accountCreated) {
+                } else if(isManager.equals("n") || isManager.equals("no")) {
+
+                    if(!EmployeeInfo.accountCreated) {
+
                         new EmployeeInfo(username, password, false);
                     }
 
                 }else{
+
                     System.out.println("Invalid Response. Please use either 'y' or 'n'.");
                 }
 

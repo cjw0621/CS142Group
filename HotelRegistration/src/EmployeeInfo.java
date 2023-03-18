@@ -28,11 +28,17 @@ public class EmployeeInfo {
                 employeeCounter++;
 
             } else {
-                System.out.println("Account failed to be created.");
+                System.out.println("Account failed to be created.\n");
                 accountCreated = false;
             }
     }
 
+    /*
+    *
+    * UserNameChk method checks if username is already in use. returns false if username is already taken.
+    * Method takes 1 String parameter, "Username".
+    *
+     */
     public boolean userNameChk(String username){
         if(Database.readEmployeeDBFile(isManager).containsKey(username)){
             System.out.println("Username has already been taken. Please try again.");
@@ -41,6 +47,12 @@ public class EmployeeInfo {
         return true;
     }
 
+    /*
+    *
+    * passCheck takes in 1 string parameter "password" and checks to see if the password contains either 3 symbols and or
+    * numbers. returns true if password is valid.
+    *
+     */
     public boolean passCheck(String password){
         String[] symbol = {"!", "@", "#", "$", "%", "^","&","*"};
         String[] numbers = new String[10];
@@ -52,21 +64,27 @@ public class EmployeeInfo {
         }
 
         for (String s : symbol) {
-            for (String number : numbers) {
-                if (password.contains(s) && password.contains(number)) {
+            for (String n : numbers) {
+                if(password.contains(s) && password.contains(n)) {
                     count++;
                 }
             }
         }
 
-        if(count >= 3){
+        if(count >= 3 && password.length() >= 6){
             EmployeeInfo.password = password;
             return true;
 
-        } else {
+        }else {
+            String statement = "\n********************************* \n" +
+                               "*  Password not strong enough!  *\n" +
+                               "*********************************\n\n" +
+                    "******************************************************************************\n" +
+                    "* You must add at least 3 numbers and/or special characters to your password *\n" +
+                    "*            and your password must be at least 6 characters long.           *\n" +
+                    "******************************************************************************\n";
 
-            System.out.println("Password not strong enough!\nYou must add at least 3 numbers and special characters " +
-                    "to your password");
+            System.out.println(statement);
             return false;
         }
     }

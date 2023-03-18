@@ -10,6 +10,16 @@ public class Database {
    private final static  File EMPLOYEE_DB_FILE = new File(EMPLOYEE_DB);
    private final static  File MANAGER_DB_FILE = new File(MANAGER_DB);
 
+   /*
+    * Method will create a new file if no file is present. Method also takes data from EmployeeInfo such as usernames,
+    * passwords and stores them in a .txt file in a HashMap format.
+    * Method creates objects in order to create and write to .txt file.
+    * Objects such as BufferedWriter, and FileWriter.
+    *
+    * Method takes no Parameters and returns nothing.
+    *
+   */
+
 
     public static void writeEmployeeDBtoTxt(){
 
@@ -94,6 +104,19 @@ public class Database {
         }
     }
 
+    /*
+    *
+    * This method takes a boolean isManager as a parameter in order to execute functions appropriately.
+    * Method creates 2 HashMaps and stores data that it retrieves from the EmployeeDB.txt file and ManagerDB.txt file.
+    *
+    * The files are in the same format as a HashMap in order for easy transfer of data.
+    *
+    * Method returns HashMap<String, String> with appropriate corresponding data. The last return statement returns an
+    * empty HashMap if something fails.
+    *
+    */
+
+
     public static HashMap<String, String> readEmployeeDBFile(boolean isManager) {
 
         HashMap<String, String> employees = new HashMap<>();
@@ -157,11 +180,7 @@ public class Database {
                 }
 
 
-            } catch(IOException e) {
-
-                System.out.println("File not found...");
-
-            }
+            } catch(IOException ignore) {}
 
             return new HashMap<>();
 
