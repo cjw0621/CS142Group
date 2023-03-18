@@ -18,7 +18,7 @@ public class EmployeeInfo {
 
     public EmployeeInfo(String username, String password, boolean isManager) {
 
-        if(passCheck(password)){
+        if(userNameChk(username) && passCheck(password) ){
                 setUsername(username);
                 setPassword(password);
                 setIsManager(isManager);
@@ -31,6 +31,14 @@ public class EmployeeInfo {
                 System.out.println("Account failed to be created.");
                 accountCreated = false;
             }
+    }
+
+    public boolean userNameChk(String username){
+        if(Database.readDBFile(isManager).containsKey(username)){
+            System.out.println("Username has already been taken. Please try again.");
+            return false;
+        }
+        return true;
     }
 
     public boolean passCheck(String password){

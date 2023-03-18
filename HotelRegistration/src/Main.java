@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -16,8 +15,6 @@ public class Main {
         }
 
         SignInClass.signIn();
-
-        Database.writeEmployeeDBtoTxt();
 
         while(true){
 

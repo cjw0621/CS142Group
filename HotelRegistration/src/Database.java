@@ -1,3 +1,5 @@
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,7 +18,9 @@ public class Database {
         BufferedWriter bf = null;
 
         try{
+
             if(EmployeeInfo.isManager) {
+
                 if (MANAGER_DB_FILE.createNewFile()) {
                     bf = new BufferedWriter(new FileWriter(MANAGER_DB_FILE));
 
@@ -30,13 +34,19 @@ public class Database {
 
                     String username = EmployeeInfo.getUsername();
                     String password = EmployeeInfo.getPassword();
-                    Path path = Paths.get(MANAGER_DB);
 
-                    Files.write(path, (username + ":" + password).getBytes(), StandardOpenOption.APPEND);
-                    Files.write(path, ("\n").getBytes(), StandardOpenOption.APPEND);
+                    if(username != null && password != null) {
+                        Path path = Paths.get(MANAGER_DB);
+
+                        Files.write(path, (username + ":" + password).getBytes(), StandardOpenOption.APPEND);
+                        Files.write(path, ("\n").getBytes(), StandardOpenOption.APPEND);
+                    }
+
+
                 } else {
                     System.out.println("uh-oh! Something Really Bad Happened!");
                 }
+
             } else {
 
                 if (EMPLOYEE_DB_FILE.createNewFile()) {
@@ -54,13 +64,17 @@ public class Database {
 
                     String username = EmployeeInfo.getUsername();
                     String password = EmployeeInfo.getPassword();
-                    Path path = Paths.get(EMPLOYEE_DB);
 
-                    Files.write(path, (username + ":" + password).getBytes(), StandardOpenOption.APPEND);
-                    Files.write(path, ("\n").getBytes(), StandardOpenOption.APPEND);
+                    if(username != null && password != null) {
+
+                        Path path = Paths.get(EMPLOYEE_DB);
+
+                        Files.write(path, (username + ":" + password).getBytes(), StandardOpenOption.APPEND);
+                        Files.write(path, ("\n").getBytes(), StandardOpenOption.APPEND);
+                    }
 
                 }else {
-                    System.out.println("uh-oh! Something Really Bad Happened!");
+                    System.out.println("uh-oh! Something Happened!");
                 }
             }
 
@@ -82,15 +96,15 @@ public class Database {
         }
     }
 
-    public static HashMap<String, String> readDBFile(String eOrM) {
+    public static HashMap<String, String> readDBFile(boolean isManager) {
 
         HashMap<String, String> employees = new HashMap<>();
         HashMap<String, String> managers = new HashMap<>();
 
-        while(true) {
+
             try {
 
-                if (eOrM.equalsIgnoreCase("e")) {
+                if (!isManager) {
 
                     FileReader frEm = new FileReader(EMPLOYEE_DB_FILE);
 
@@ -115,7 +129,7 @@ public class Database {
                     return employees;
 
 
-                } else if (eOrM.equalsIgnoreCase("m")) {
+                } else if(isManager) {
                     FileReader frMa = new FileReader(MANAGER_DB_FILE);
 
                     BufferedReader brMa = new BufferedReader(frMa);
@@ -136,19 +150,23 @@ public class Database {
                     brMa.close();
                     frMa.close();
                     return managers;
-                }else{
+
+                }else {
+
                     System.out.println("Incorrect parameter\n");
                     System.out.println("Initializing Employee Database\n");
-                    readDBFile("e");
+                    readDBFile(false);
                 }
+
 
             } catch(IOException e) {
 
-                System.out.println(e + "\n");
-                System.out.println("File was not found. Creating a new File...\n");
-                SignInClass.signIn();
+                System.out.println("File not found...");
+
             }
-        }
+
+            return new HashMap<>();
+
     }
 
 }
