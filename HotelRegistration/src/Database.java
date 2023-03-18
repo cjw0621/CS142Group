@@ -182,7 +182,7 @@ public class Database {
 
             } catch(IOException e) {
 
-                System.out.println("something happend here");
+                System.out.println("something happened here");
             }
 
         return new HashMap<>();
