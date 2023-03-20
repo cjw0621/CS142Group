@@ -1,4 +1,4 @@
-import jdk.jfr.StackTrace;
+import com.sun.xml.internal.bind.v2.TODO;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -13,6 +13,10 @@ public class Database {
     private final static File EMPLOYEE_DB_FILE = new File(EMPLOYEE_DB);
     private final static File MANAGER_DB_FILE = new File(MANAGER_DB);
     private final static File HOTEL_DB_FILE = new File(HOTEL_DB);
+
+    /*
+    TODO: Write a readHotelDBTxt method.
+     */
 
 
     public static void writeHotelDBtoTxt(HashMap<Integer, RoomObj> hashMap) throws IOException {
