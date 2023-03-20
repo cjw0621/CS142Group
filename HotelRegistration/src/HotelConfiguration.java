@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.*;
 public class HotelConfiguration{
     private final static Scanner hotelInput = new Scanner(System.in);
@@ -51,373 +50,385 @@ public class HotelConfiguration{
 
     public static void config(){
 
-        boolean didExit = false;
 
-        while(!didExit){
 
-            System.out.println(
+
+
+    System.out.println(
+            "*********************************************\n" +
+                    "* Welcome to the Hotel Configuration Portal *\n" +
                     "*********************************************\n" +
-                            "* Welcome to the Hotel Configuration Portal *\n" +
-                            "*********************************************\n" +
-                            "To exit type '//'");
+                    "To exit type '//'");
 
 
-            while (SignInClass.successEM) {
+    while (SignInClass.successEM) {
 
-                if (SignInClass.successMA) {
+        if (SignInClass.successMA) {
 
-                    break;
-                }
+            break;
+        }
 
-                System.out.println("*Please Sign-In as a Manager to Continue*\n\n");
-                SignInClass.signIn();
-            }
-
-
-            while (true) {
-                System.out.print("\nPlease Enter the Number of Rooms Available for Guests:\n>> ");
-                String ui = hotelInput.nextLine();
-                if (isNum(ui)) {
-                    maxNumOfRooms = stringToInt(ui);
-                    break;
-                } else {
-                    System.out.println("Invalid Number of Rooms!\n");
-                }
-                if (ui.equalsIgnoreCase("//")) {
-                    didExit = true;
-                    break;
-                }
-            }
-
-            while (true) {
-
-                System.out.print("Are Pets Allowed In All Rooms?\n(Type Either Y Or N)\n>>");
-                String ui = hotelInput.nextLine();
-
-                if(ui.equalsIgnoreCase("n") || ui.equalsIgnoreCase("no")){
-
-                    System.out.print("Please Indicate Which Rooms are Pet Friendly. When finished type '-1' \n>> ");
+        System.out.println("*Please Sign-In as a Manager to Continue*\n\n");
+        SignInClass.signIn();
+    }
 
 
-                    while(!allRoomsPetFriendly){
+    while (true) {
+        System.out.print("\nPlease Enter the Number of Rooms Available for Guests:\n>> ");
+        String ui = hotelInput.nextLine();
+        if (isNum(ui)) {
+            maxNumOfRooms = stringToInt(ui);
+            break;
+        } else {
+            System.out.println("Invalid Number of Rooms!\n");
+        }
+        if (ui.equalsIgnoreCase("//")) {
 
-                        ui = hotelInput.nextLine();
+            break;
+        }
+    }
 
-                        if(isNum(ui)){
+    while (true) {
 
-                            PET_FRIENDLY_ROOMS.add(stringToInt(ui));
+        System.out.print("Are Pets Allowed In All Rooms?\n(Type Either Y Or N)\n>> ");
+        String ui = hotelInput.nextLine();
 
+        if(ui.equalsIgnoreCase("n") || ui.equalsIgnoreCase("no")){
 
-                        } else {
+            while(!allRoomsPetFriendly){
 
-                            System.out.println("Invalid Response!");
-                        }
-                        if(ui.equalsIgnoreCase("-1")){
-                            break;
-                        }
-                    }
+                System.out.print("Please Indicate Which Rooms are Pet Friendly. When finished type '-1' \n>> ");
+                ui = hotelInput.nextLine();
 
-                    System.out.println("How Much Is The Pet Cleaning Fee?\n>> ");
+                if(isNum(ui)){
 
-                    while(true){
-
-                        ui = hotelInput.nextLine();
-
-
-                        if(isNum(ui)){
-
-                            pricePetCleaningFee = stringToDouble(ui);
-
-                            break;
-
-                        } else {
-
-                            System.out.println("Invalid Response!");
-                        }
-                    }
-
-                    break;
-
-                } else if(ui.equalsIgnoreCase("y") || ui.equalsIgnoreCase("yes")){
-
-                    allRoomsPetFriendly = true;
-
-                    break;
-
-                } else if(ui.equalsIgnoreCase("//")){
-
-                    didExit = true;
-                    break;
+                    PET_FRIENDLY_ROOMS.add(stringToInt(ui));
 
                 } else {
-                    System.out.println("Invalid response!");
+
+                    if(ui.equalsIgnoreCase("-1")){
+
+                        break;
+
+                    }else {
+
+                        System.out.println("Invalid Response!");
+                    }
                 }
             }
+
+
 
             while(true){
 
-                System.out.print("How Many Standard Size Suites Are Available For Guests?\n>> ");
-                String ui = hotelInput.nextLine();
+                System.out.print("How Much Is The Pet Cleaning Fee?\n>> ");
 
-                if(ui.equalsIgnoreCase("//")){
-
-                    didExit = true;
-                    break;
-                }
+                ui = hotelInput.nextLine();
 
                 if(isNum(ui)){
 
-                    levelTwoSuites = stringToInt(ui);
-                    break;
-
-                }else{
-
-                    System.out.println("Invalid Response!");
-                }
-            }
-            while(true){
-
-                System.out.println("How Many Mid-Level Suites Are Available For Guests?\n>> ");
-                String ui = hotelInput.nextLine();
-
-                if(ui.equalsIgnoreCase("//")){
-
-                    didExit = true;
-                    break;
-                }
-
-                if(isNum(ui)){
-
-                    levelThreeSuites = stringToInt(ui);
-                    break;
-
-                }else{
-
-                    System.out.println("Invalid Response!");
-                }
-            }
-
-            while(true){
-
-                System.out.println("How Many Executive-Level Suites Are Available For Guests?");
-                String ui = hotelInput.nextLine();
-
-                if(ui.equalsIgnoreCase("//")){
-
-                    didExit = true;
-                    break;
-                }
-
-                if(isNum(ui)){
-
-                    levelFourSuites = stringToInt(ui);
-                    break;
-
-                }else{
-
-                    System.out.println("Invalid Response!");
-                }
-            }
-
-            while(levelTwoSuites != STANDARD_SUITE_ROOMS.size()){
-
-                System.out.print("Please Indicate Which Rooms Are Standard Suites.\nType '-1' When finished\n>> ");
-                String ui = hotelInput.nextLine();
-
-                if(ui.equalsIgnoreCase("//")){
-
-                    didExit = true;
-                    break;
-                }
-
-                if(ui.equalsIgnoreCase("-1")){
+                    pricePetCleaningFee = stringToDouble(ui);
 
                     break;
-
-                } else if(isNum(ui)){
-
-                    STANDARD_SUITE_ROOMS.add(stringToInt(ui));
 
                 } else{
 
-                    System.out.println("Invalid Room Number!\n");
-                    System.out.println("Standard Suite Room Numbers Are currently: " + STANDARD_SUITE_ROOMS);
-                }
-            }
-
-
-            while (levelThreeSuites != LUXURY_LEVEL_SUITE_ROOMS.size()) {
-
-                if (levelTwoSuites != 0) {
-
-                    System.out.print("Please Indicate Which Rooms Are Luxury-Level Suites.\nType '-1' When finished\n>> ");
-                    String ui = hotelInput.nextLine();
-
-                    if (ui.equalsIgnoreCase("//")) {
-                        didExit = true;
-                        break;
-                    }
-
-                    if (ui.equalsIgnoreCase("-1")) {
+                    if(ui.equalsIgnoreCase("-1")){
 
                         break;
-                    } else if (isNum(ui)) {
-                        LUXURY_LEVEL_SUITE_ROOMS.add(stringToInt(ui));
-                    } else {
-                        System.out.println("Invalid Room Number!\n");
-                        System.out.println("Luxury Room Numbers Are currently: " + LUXURY_LEVEL_SUITE_ROOMS);
+
+                    }else {
+
+                        System.out.println("Invalid Response!");
                     }
-
-                } else {
-                    break;
                 }
             }
 
-            while (levelFourSuites != EXECUTIVE_LEVEL_SUITE_ROOMS.size()) {
+            break;
 
-                if(levelFourSuites != 0){
+        } else if(ui.equalsIgnoreCase("y") || ui.equalsIgnoreCase("yes")){
 
-                    System.out.print("Please Indicate Which Rooms Are Executive-Level Suites.\nType '-1' When finished\n>> ");
-                    String ui = hotelInput.nextLine();
+            allRoomsPetFriendly = true;
 
-                    if (ui.equalsIgnoreCase("//")) {
-                        didExit = true;
-                        break;
-                    }
+            break;
 
-                    if (ui.equalsIgnoreCase("-1")) {
-                        break;
-                    } else if (isNum(ui)) {
-                        EXECUTIVE_LEVEL_SUITE_ROOMS.add(stringToInt(ui));
-                    } else {
-                        System.out.println("Invalid Room Number!\n");
-                        System.out.println("Executive Room Numbers Are currently: " + EXECUTIVE_LEVEL_SUITE_ROOMS);
-                    }
-                } else {
-                    break;
-                }
-            }
+        } else if(ui.equalsIgnoreCase("//")){
 
-            while(true){
+            break;
 
-                System.out.println("Please Set the Price For A Standard Size Room\n(lease exclude the $ symbol):\n>> ");
-                String ui = hotelInput.nextLine();
-
-                if(ui.equalsIgnoreCase("//")){
-                    didExit = true;
-                    break;
-                }
-
-                if(isNum(ui)){
-
-                    priceStandardRoom = stringToDouble(ui);
-                    break;
-
-                }else{
-
-                    System.out.println("**Invalid Price**\n");
-                }
-            }
-
-            while(true){
-
-                System.out.println("Please Set the Price For A Standard Suite Size Room\n(lease exclude the $ symbol):\n>> ");
-                String ui = hotelInput.nextLine();
-
-                if(ui.equalsIgnoreCase("//")){
-
-                    didExit = true;
-                    break;
-                }
-
-                if(isNum(ui)){
-
-                    priceMidRoom = stringToDouble(ui);
-                    break;
-
-                }else{
-                    System.out.println("**Invalid Price**\n");
-                }
-            }
-
-            while(true){
-
-                System.out.println("Please Set the Price For A Luxury Size Room\n(lease exclude the $ symbol):\n>> ");
-                String ui = hotelInput.nextLine();
-
-                if(ui.equalsIgnoreCase("//")){
-
-                    didExit = true;
-                    break;
-                }
-
-                if(isNum(ui)){
-
-                    priceLuxuryRoom = stringToDouble(ui);
-                    break;
-
-                }else{
-
-                    System.out.println("**Invalid Price**\n");
-                }
-            }
-
-            while(true){
-
-                System.out.println("Please Set the Price For A Executive Size Room\n(lease exclude the $ symbol):\n>> ");
-                String ui = hotelInput.nextLine();
-
-                if(ui.equalsIgnoreCase("//")){
-
-                    didExit = true;
-                    break;
-                }
-
-                if(isNum(ui)){
-
-                    priceExecutiveRoom = stringToDouble(ui);
-                    break;
-
-                }else{
-
-                    System.out.println("**Invalid Price**\n");
-                }
-            }
-
-            System.out.println("Building Rooms...");
-            hotelBuilder();
-            System.out.println("Rooms Built Successfully!");
+        } else {
+            System.out.println("Invalid response!");
         }
+    }
+
+    while(true){
+
+        System.out.print("How Many Standard Size Suites Are Available For Guests?\n>> ");
+        String ui = hotelInput.nextLine();
+
+        if(ui.equalsIgnoreCase("//")){
+
+            break;
+        }
+
+        if(isNum(ui)){
+
+            levelTwoSuites = stringToInt(ui);
+            break;
+
+        }else{
+
+            System.out.println("Invalid Response!");
+        }
+    }
+    while(true){
+
+        System.out.print("How Many Luxury Level Suites Are Available For Guests?\n>> ");
+        String ui = hotelInput.nextLine();
+
+        if(ui.equalsIgnoreCase("//")){
+
+            break;
+        }else if(isNum(ui)){
+
+            levelThreeSuites = stringToInt(ui);
+            break;
+
+        }else{
+
+            System.out.println("Invalid Response!");
+        }
+    }
+
+    while(true){
+
+        System.out.print("How Many Executive-Level Suites Are Available For Guests?\n>> ");
+        String ui = hotelInput.nextLine();
+
+        if(ui.equalsIgnoreCase("//")){
+
+
+            break;
+        }
+
+        if(isNum(ui)){
+
+            levelFourSuites = stringToInt(ui);
+            break;
+
+        }else{
+
+            System.out.println("Invalid Response!");
+        }
+    }
+
+    do{
+
+        System.out.print("Please Indicate Which Rooms Are Standard Suites.\nType '-1' When finished\n>> ");
+        String ui = hotelInput.nextLine();
+
+        if(ui.equalsIgnoreCase("-1")){
+
+            break;
+
+        } else if(isNum(ui)){
+
+            STANDARD_SUITE_ROOMS.add(stringToInt(ui));
+
+        } else{
+
+            System.out.println("Invalid Room Number!\n");
+            System.out.println("Standard Suite Room Numbers Are currently: " + STANDARD_SUITE_ROOMS);
+        }
+    }while (STANDARD_SUITE_ROOMS.size() < levelTwoSuites );
+
+
+    do {
+
+        if (levelTwoSuites != 0) {
+
+            System.out.print("Please Indicate Which Rooms Are Luxury-Level Suites.\nType '-1' When finished\n>> ");
+            String ui = hotelInput.nextLine();
+
+            if (ui.equalsIgnoreCase("//")) {
+                break;
+            }
+
+            if (ui.equalsIgnoreCase("-1")) {
+
+                break;
+            } else if (isNum(ui)) {
+                LUXURY_LEVEL_SUITE_ROOMS.add(stringToInt(ui));
+            } else {
+                System.out.println("Invalid Room Number!\n");
+                System.out.println("Luxury Room Numbers Are currently: " + LUXURY_LEVEL_SUITE_ROOMS);
+            }
+
+        } else {
+            break;
+        }
+    }while (LUXURY_LEVEL_SUITE_ROOMS.size() < levelThreeSuites);
+
+    do{
+
+        if(levelFourSuites != 0){
+
+            System.out.print("Please Indicate Which Rooms Are Executive-Level Suites.\nType '-1' When finished\n>> ");
+            String ui = hotelInput.nextLine();
+
+            if (ui.equalsIgnoreCase("//")) {
+
+                break;
+            }
+
+            if (ui.equalsIgnoreCase("-1")) {
+                break;
+            } else if (isNum(ui)) {
+                EXECUTIVE_LEVEL_SUITE_ROOMS.add(stringToInt(ui));
+            } else {
+                System.out.println("Invalid Room Number!\n");
+                System.out.println("Executive Room Numbers Are currently: " + EXECUTIVE_LEVEL_SUITE_ROOMS);
+            }
+        } else {
+            break;
+        }
+
+    } while(EXECUTIVE_LEVEL_SUITE_ROOMS.size() < levelFourSuites );
+
+    while(true){
+
+        System.out.print("Please Set the Price For A Standard Size Room\n(Please exclude the $ symbol):\n>> ");
+        String ui = hotelInput.nextLine();
+
+        if(ui.equalsIgnoreCase("//")){
+
+            break;
+        }
+
+        if(isNum(ui)){
+
+            priceStandardRoom = stringToDouble(ui);
+            break;
+
+        }else{
+
+            System.out.println("**Invalid Price**\n");
+        }
+    }
+
+    while(true){
+
+        System.out.print("Please Set the Price For A Standard Suite Size Room\n(Please exclude the $ symbol):\n>> ");
+        String ui = hotelInput.nextLine();
+
+        if(ui.equalsIgnoreCase("//")){
+
+            break;
+        }
+
+        if(isNum(ui)){
+
+            priceMidRoom = stringToDouble(ui);
+            break;
+
+        }else{
+            System.out.println("**Invalid Price**\n");
+        }
+    }
+
+    while(true){
+
+        System.out.print("Please Set the Price For A Luxury Size Room\n(Please exclude the $ symbol):\n>> ");
+        String ui = hotelInput.nextLine();
+
+        if(ui.equalsIgnoreCase("//")){
+
+            break;
+        }
+
+        if(isNum(ui)){
+
+            priceLuxuryRoom = stringToDouble(ui);
+            break;
+
+        }else{
+
+            System.out.println("**Invalid Price**\n");
+        }
+    }
+
+    while(true) {
+
+        if (EXECUTIVE_LEVEL_SUITE_ROOMS.size() != 0) {
+
+            System.out.print("Please Set the Price For A Executive Size Room\n(Please exclude the $ symbol):\n>> ");
+            String ui = hotelInput.nextLine();
+
+            if (ui.equalsIgnoreCase("//")) {
+
+                break;
+            }
+
+            if (isNum(ui)) {
+
+                priceExecutiveRoom = stringToDouble(ui);
+                break;
+
+            } else {
+
+                System.out.println("**Invalid Price**\n");
+            }
+        }
+    }
+
+    System.out.println("Building Rooms...");
+    hotelBuilder();
+    System.out.println("Rooms Built Successfully!");
+
+
     }
 
 
 
-    private static void hotelBuilder(){
+    public static void hotelBuilder(){
 
         for (int i = 0; i != maxNumOfRooms; i++) {
+
             hotelRooms.put(i, rooms);
         }
 
         for(int i = 0; i < hotelRooms.size(); i++){
+
+            hotelRooms.get(i).setRoomNumber(i+1);
+            hotelRooms.get(i).setPrice(priceStandardRoom);
+            hotelRooms.get(i).setNumberOfBeds(1);
+            hotelRooms.get(i).setPetAllowed(allRoomsPetFriendly);
+            hotelRooms.get(i).setSuiteLevel(1);
+            hotelRooms.get(i).setGuestName("vacant");
+            hotelRooms.get(i).setCleanStatus("green");
+
             hotelRooms.replace(i, hotelRooms.get(i), new RoomObj(hotelRooms.get(i).getGuestName(),
-                    hotelRooms.get(i).getRoomNumber() + 1, hotelRooms.get(i).getPetAllowed(),
+                    hotelRooms.get(i).getRoomNumber(), hotelRooms.get(i).getPetAllowed(),
                     hotelRooms.get(i).getNumberOfBeds(), hotelRooms.get(i).getSuiteLevel(),
                     hotelRooms.get(i).getCleanStatus(),
                     hotelRooms.get(i).getPrice()));
         }
 
         if (!allRoomsPetFriendly) {
-            for (int i = 0; i < PET_FRIENDLY_ROOMS.size(); i++) {
+            for (int i = 0; i < maxNumOfRooms; i++) {
 
                 for (int j = 0; j < PET_FRIENDLY_ROOMS.size(); j++) {
 
-                    if (i == PET_FRIENDLY_ROOMS.get(i)) {
+                    if (i == PET_FRIENDLY_ROOMS.get(j)) {
+
+                        hotelRooms.get(i).setPrice(priceStandardRoom + pricePetCleaningFee);
+                        hotelRooms.get(i).setPetAllowed(true);
 
                         hotelRooms.replace(i, hotelRooms.get(i), new RoomObj(hotelRooms.get(i).getGuestName(),
                                 hotelRooms.get(i).getRoomNumber(), hotelRooms.get(i).getPetAllowed(),
                                 hotelRooms.get(i).getNumberOfBeds(), hotelRooms.get(i).getSuiteLevel(),
-                                hotelRooms.get(i).getCleanStatus(),
-                                hotelRooms.get(i).getPrice() + pricePetCleaningFee));
+                                hotelRooms.get(i).getCleanStatus(), hotelRooms.get(i).getPrice()));
+
 
                     }
                 }
@@ -426,52 +437,84 @@ public class HotelConfiguration{
 
 
         if(STANDARD_SUITE_ROOMS.size() != 0) {
-            for(int i = 0; i < STANDARD_SUITE_ROOMS.size(); i++){
 
-                for(Integer standardSuiteRoom : STANDARD_SUITE_ROOMS){
+            for (int i = 0; i < maxNumOfRooms; i++) {
 
-                    if(i == standardSuiteRoom){
+                for (int j = 0; j < STANDARD_SUITE_ROOMS.size(); j++) {
+
+                    if (i == STANDARD_SUITE_ROOMS.get(j)) {
+
+                        hotelRooms.get(i).setPrice(priceMidRoom);
+                        hotelRooms.get(i).setSuiteLevel(2);
+                        hotelRooms.get(i).setNumberOfBeds(2);
+
+                        if(hotelRooms.get(i).getPetAllowed()){
+                            hotelRooms.get(i).setPrice(priceMidRoom + pricePetCleaningFee);
+                        }
 
                         hotelRooms.replace(i, hotelRooms.get(i), new RoomObj(hotelRooms.get(i).getGuestName(),
-                                hotelRooms.get(i).getRoomNumber(), hotelRooms.get(i).getPetAllowed(), 2,
-                                2, hotelRooms.get(i).getCleanStatus(),
-                                priceMidRoom));
+                                hotelRooms.get(i).getRoomNumber(), hotelRooms.get(i).getPetAllowed(),
+                                hotelRooms.get(i).getNumberOfBeds(), hotelRooms.get(i).getSuiteLevel(),
+                                hotelRooms.get(i).getCleanStatus(),
+                                hotelRooms.get(i).getPrice()));
+
                     }
                 }
             }
         }
+
 
 
         if (LUXURY_LEVEL_SUITE_ROOMS.size() != 0) {
 
-            for(int i = 0; i < LUXURY_LEVEL_SUITE_ROOMS.size(); i++){
+            for (int i = 0; i < maxNumOfRooms; i++) {
 
-                for(Integer luxuryLevelSuiteRoom : LUXURY_LEVEL_SUITE_ROOMS){
+                for (int j = 0; j < LUXURY_LEVEL_SUITE_ROOMS.size(); j++) {
 
-                    if(i == luxuryLevelSuiteRoom){
+                    if (i == LUXURY_LEVEL_SUITE_ROOMS.get(j)) {
+
+                        hotelRooms.get(i).setSuiteLevel(3);
+                        hotelRooms.get(i).setNumberOfBeds(3);
+                        hotelRooms.get(i).setPrice(priceLuxuryRoom);
+
+                        if(hotelRooms.get(i).getPetAllowed()){
+
+                            hotelRooms.get(i).setPrice(priceLuxuryRoom + pricePetCleaningFee);
+                        }
+
 
                         hotelRooms.replace(i, hotelRooms.get(i), new RoomObj(hotelRooms.get(i).getGuestName(),
-                                hotelRooms.get(i).getRoomNumber(), hotelRooms.get(i).getPetAllowed(), 3,
-                                3, hotelRooms.get(i).getCleanStatus(),
-                                priceLuxuryRoom));
+                                hotelRooms.get(i).getRoomNumber(), hotelRooms.get(i).getPetAllowed(),
+                                hotelRooms.get(i).getNumberOfBeds(), hotelRooms.get(i).getSuiteLevel(),
+                                hotelRooms.get(i).getCleanStatus(), priceLuxuryRoom));
                     }
                 }
             }
         }
 
 
+
         if(EXECUTIVE_LEVEL_SUITE_ROOMS.size() != 0){
 
-            for(int i = 0; i < EXECUTIVE_LEVEL_SUITE_ROOMS.size(); i++){
+            for(int i = 0; i < maxNumOfRooms; i++){
 
-                for(Integer executiveLevelSuiteRoom : EXECUTIVE_LEVEL_SUITE_ROOMS){
+                for (int j = 0; j < EXECUTIVE_LEVEL_SUITE_ROOMS.size(); j++) {
 
-                    if(i == executiveLevelSuiteRoom){
+                    if (i == EXECUTIVE_LEVEL_SUITE_ROOMS.get(j)) {
+
+                        hotelRooms.get(i).setSuiteLevel(4);
+                        hotelRooms.get(i).setNumberOfBeds(4);
+                        hotelRooms.get(i).setPrice(priceExecutiveRoom);
+
+                        if(hotelRooms.get(i).getPetAllowed()){
+
+                            hotelRooms.get(i).setPrice(priceExecutiveRoom + pricePetCleaningFee);
+                        }
 
                         hotelRooms.replace(i, hotelRooms.get(i), new RoomObj(hotelRooms.get(i).getGuestName(),
-                                hotelRooms.get(i).getRoomNumber(), hotelRooms.get(i).getPetAllowed(), 4,
-                                4, hotelRooms.get(i).getCleanStatus(),
-                                priceExecutiveRoom));
+                                hotelRooms.get(i).getRoomNumber(), hotelRooms.get(i).getPetAllowed(),
+                                hotelRooms.get(i).getNumberOfBeds(), hotelRooms.get(i).getSuiteLevel(),
+                                hotelRooms.get(i).getCleanStatus(), hotelRooms.get(i).getPrice()));
                     }
                 }
             }
