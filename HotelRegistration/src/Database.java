@@ -1,3 +1,5 @@
+import jdk.jfr.StackTrace;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -5,10 +7,45 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 public class Database {
-   private final static String EMPLOYEE_DB = "EmployeeDB.txt";
-   private final static String MANAGER_DB ="ManagerDB.txt";
-   private final static  File EMPLOYEE_DB_FILE = new File(EMPLOYEE_DB);
-   private final static  File MANAGER_DB_FILE = new File(MANAGER_DB);
+    private final static String EMPLOYEE_DB = "EmployeeDB.txt";
+    private final static String MANAGER_DB = "ManagerDB.txt";
+    private final static String HOTEL_DB = "HotelDB.Txt";
+    private final static File EMPLOYEE_DB_FILE = new File(EMPLOYEE_DB);
+    private final static File MANAGER_DB_FILE = new File(MANAGER_DB);
+    private final static File HOTEL_DB_FILE = new File(HOTEL_DB);
+
+
+    public static void writeHotelDBtoTxt(HashMap<Integer, RoomObj> hashMap) throws IOException {
+        BufferedWriter bf;
+
+        try {
+            if (HOTEL_DB_FILE.delete()) {
+                System.out.println("File Has Been Update");
+            }
+
+            if (HOTEL_DB_FILE.createNewFile()) {
+
+                bf = new BufferedWriter(new FileWriter(HOTEL_DB_FILE));
+
+                for (Map.Entry<Integer, RoomObj> entry : hashMap.entrySet()) {
+                    bf.write(entry.getKey() + ":" + "["+entry.getValue().getGuestName() +","
+                            +entry.getValue().getRoomNumber()+","+entry.getValue().getPetAllowed()+","+
+                            entry.getValue().getNumberOfBeds()+","+entry.getValue().getSuiteLevel()+","+
+                            entry.getValue().getCleanStatus()+","+entry.getValue().getPrice()+"]");
+                    bf.newLine();
+                }
+
+                bf.flush();
+            }
+
+
+        } catch (IOException e) {
+
+            throw new RuntimeException(e);
+        }
+   }
+
+
 
    /*
     * Method will create a new file if no file is present. Method also takes data from EmployeeInfo such as usernames,
@@ -23,41 +60,45 @@ public class Database {
 
     public static void writeEmployeeDBtoTxt(){
 
-        BufferedWriter bf = null;
+        BufferedWriter bf;
 
         try{
 
-            if(EmployeeInfo.isManager) {
+            if(EmployeeInfo.isManager){
 
-                if (MANAGER_DB_FILE.createNewFile()) {
+                if(MANAGER_DB_FILE.createNewFile()){
+
                     bf = new BufferedWriter(new FileWriter(MANAGER_DB_FILE));
 
-                    for (Map.Entry<String, String> entry : EmployeeInfo.managerDB.entrySet()) {
+                    for(Map.Entry<String, String> entry : EmployeeInfo.managerDB.entrySet()){
                         bf.write(entry.getKey() + ":" + entry.getValue());
                         bf.newLine();
                     }
+
                     bf.flush();
 
-                } else if (MANAGER_DB_FILE.exists()) {
+                } else if(MANAGER_DB_FILE.exists()){
 
                     String username = EmployeeInfo.getUsername();
                     String password = EmployeeInfo.getPassword();
 
-                    if(username != null && password != null) {
-                        Path path = Paths.get(MANAGER_DB);
+                    if(username != null && password != null){
 
+                        Path path = Paths.get(MANAGER_DB);
                         Files.write(path, (username + ":" + password).getBytes(), StandardOpenOption.APPEND);
                         Files.write(path, ("\n").getBytes(), StandardOpenOption.APPEND);
                     }
 
 
-                } else {
+                } else{
+
                     System.out.println("uh-oh! Something Really Bad Happened!");
-                }
+                    }
 
-            } else {
+            } else{
 
-                if (EMPLOYEE_DB_FILE.createNewFile()) {
+                if(EMPLOYEE_DB_FILE.createNewFile()){
+
                     bf = new BufferedWriter(new FileWriter(EMPLOYEE_DB_FILE));
 
                     for (Map.Entry<String, String> entry : EmployeeInfo.employeeDB.entrySet()) {
@@ -68,39 +109,26 @@ public class Database {
                     }
                     bf.flush();
 
-                } else if (EMPLOYEE_DB_FILE.exists()) {
+                } else if(EMPLOYEE_DB_FILE.exists()){
 
                     String username = EmployeeInfo.getUsername();
                     String password = EmployeeInfo.getPassword();
 
-                    if(username != null && password != null) {
+                    if(username != null && password != null){
 
                         Path path = Paths.get(EMPLOYEE_DB);
-
                         Files.write(path, (username + ":" + password).getBytes(), StandardOpenOption.APPEND);
                         Files.write(path, ("\n").getBytes(), StandardOpenOption.APPEND);
                     }
 
                 }else {
+
                     System.out.println("uh-oh! Something Happened!");
                 }
             }
+        }   catch(IOException e){
 
-    }
-        catch (IOException e){
             e.printStackTrace();
-        }
-
-        finally {
-
-            try {
-                assert bf != null;
-                bf.close();
-            }
-
-            catch (Exception ignored){
-
-            }
         }
     }
 
@@ -117,7 +145,7 @@ public class Database {
     */
 
 
-    public static HashMap<String, String> readEmployeeDBFile(boolean isManager) {
+    public static HashMap<String, String> readEmployeeDBFile(boolean isManager){
 
         HashMap<String, String> employees = new HashMap<>();
         HashMap<String, String> managers = new HashMap<>();
@@ -125,21 +153,20 @@ public class Database {
 
             try {
 
-                if (!isManager) {
-
-                    FileReader frEm = new FileReader(EMPLOYEE_DB_FILE);
-
-                    BufferedReader brEm = new BufferedReader(frEm);
+                if(!isManager){
 
                     String lineEm;
+                    FileReader frEm = new FileReader(EMPLOYEE_DB_FILE);
+                    BufferedReader brEm = new BufferedReader(frEm);
 
-                    while ((lineEm = brEm.readLine()) != null) {
+                    while((lineEm = brEm.readLine()) != null) {
+
                         String[] parts = lineEm.split(":");
-
                         String username = parts[0].trim();
                         String password = parts[1].trim();
 
-                        if (!username.equals("") && !password.equals("")) {
+                        if(!username.equals("") && !password.equals("")){
+
                             employees.put(username, password);
                         }
 
@@ -147,27 +174,29 @@ public class Database {
 
                     brEm.close();
                     frEm.close();
+
                     return employees;
 
 
-                } else if(isManager) {
-                    FileReader frMa = new FileReader(MANAGER_DB_FILE);
+                } else if(isManager){
 
+                    FileReader frMa = new FileReader(MANAGER_DB_FILE);
                     BufferedReader brMa = new BufferedReader(frMa);
                     String lineMa;
 
-                    while ((lineMa = brMa.readLine()) != null) {
+                    while((lineMa = brMa.readLine()) != null) {
 
                         String[] parts = lineMa.split(":");
-
                         String username = parts[0].trim();
                         String password = parts[1].trim();
 
                         if (!username.equals("") && !password.equals("")) {
+
                             managers.put(username, password);
                         }
 
                     }
+
                     brMa.close();
                     frMa.close();
                     return managers;
@@ -177,15 +206,11 @@ public class Database {
                     System.out.println("Incorrect parameter\n");
                     System.out.println("Initializing Employee Database\n");
                     readEmployeeDBFile(false);
+                    }
+
+                } catch(IOException ignore) {
                 }
 
-
-            } catch(IOException ignore) {}
-
         return new HashMap<>();
-
     }
-
-
-
 }

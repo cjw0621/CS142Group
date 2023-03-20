@@ -1,60 +1,72 @@
 public class RoomObj {
+
+    private String guestName;
     private int roomNumber;
     private boolean petAllowed;
     private int numberOfBeds;
-    private int suiteStatus;
+    private int suiteLevel;
     private String cleanStatus;
     private double price;
 
-    public RoomObj(int roomNumber, boolean petAllowed, int numberOfBeds, int suiteStatus, String cleanStatus,
-                   double price){
+    public RoomObj(String guestName, int roomNumber, boolean petAllowed, int numberOfBeds, int suiteLevel, String cleanStatus,
+            double price){
 
+        setGuestName(guestName);
         setRoomNumber(roomNumber);
         setPetAllowed(petAllowed);
         setNumberOfBeds(numberOfBeds);
-        setSuite(suiteStatus);
+        setSuiteLevel(suiteLevel);
         setCleanStatus(cleanStatus);
         setPrice(price);
 
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
+    public String getGuestName(){
+        return this.guestName;
     }
 
-    private void setRoomNumber(int roomNumber) {
+    public void setGuestName(String guestName){
+        this.guestName = guestName;
+    }
+
+    public int getRoomNumber() {
+        return this.roomNumber;
+    }
+
+    public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }
 
-    public boolean isPetAllowed() {
-        return petAllowed;
+
+    public boolean getPetAllowed() {
+        return this.petAllowed;
     }
 
-    private void setPetAllowed(boolean petAllowed) {
+    public void setPetAllowed(boolean petAllowed) {
         this.petAllowed = petAllowed;
     }
 
     public int getNumberOfBeds() {
-        return numberOfBeds;
+        return this.numberOfBeds;
     }
 
-    private void setNumberOfBeds(int numberOfBeds) {
+    public void setNumberOfBeds(int numberOfBeds) {
         this.numberOfBeds = numberOfBeds;
     }
 
-    public int isSuite() {
-        return suiteStatus;
+    public int getSuiteLevel() {
+        return this.suiteLevel;
     }
 
-    private void setSuite(int suite) {
-        suiteStatus = suite;
+    public void setSuiteLevel(int suiteLevel) {
+        this.suiteLevel = suiteLevel;
     }
 
     public String getCleanStatus(){
         return this.cleanStatus;
     }
 
-    private void setCleanStatus(String color){
+    public void setCleanStatus(String color){
         this.cleanStatus = color;
     }
 
@@ -62,7 +74,7 @@ public class RoomObj {
         return this.price;
     }
 
-    private void setPrice(double price){
+    public void setPrice(double price){
         this.price = price;
     }
 }

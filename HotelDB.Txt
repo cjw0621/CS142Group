@@ -1,0 +1,5 @@
+0:[vacant,1,false,1,1,green,49.99]
+1:[vacant,2,false,1,1,green,49.99]
+2:[vacant,3,false,1,1,green,49.99]
+3:[vacant,4,false,1,1,green,49.99]
+4:[vacant,5,false,1,1,green,49.99]
