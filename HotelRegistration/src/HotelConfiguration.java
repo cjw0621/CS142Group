@@ -49,7 +49,7 @@ public class HotelConfiguration{
         return Double.parseDouble((a));
     }
 
-    public static void config() throws IOException {
+    public static void config(){
 
         boolean didExit = false;
 
@@ -392,7 +392,7 @@ public class HotelConfiguration{
 
 
 
-    private static void hotelBuilder() throws IOException {
+    private static void hotelBuilder(){
 
         for (int i = 0; i != maxNumOfRooms; i++) {
             hotelRooms.put(i, rooms);

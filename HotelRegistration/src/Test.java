@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Test {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
 //       HotelConfiguration.config();
 
        HotelConfiguration.config();

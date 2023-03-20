@@ -14,24 +14,32 @@ public class Database {
     private final static File MANAGER_DB_FILE = new File(MANAGER_DB);
     private final static File HOTEL_DB_FILE = new File(HOTEL_DB);
 
+
+    //TODO: Write a readHotelDBTxt method.
+
     /*
-    TODO: Write a readHotelDBTxt method.
+     * WriteHotelDBtoTxt takes in a HashMap as a parameter, parses it, and copies the values from the HashMap
+     * to a .txt file. The .txt file is then used as a database. Method returns nothing. Method also deletes existing
+     * data when ever the HotelBuilder method is called and recreates a new database with updated values to prevent
+     * duplication.
      */
 
 
-    public static void writeHotelDBtoTxt(HashMap<Integer, RoomObj> hashMap) throws IOException {
+    public static void writeHotelDBtoTxt(HashMap<Integer, RoomObj> hashMap){
+
         BufferedWriter bf;
 
-        try {
-            if (HOTEL_DB_FILE.delete()) {
+        try{
+            if(HOTEL_DB_FILE.delete()){
                 System.out.println("File Has Been Update");
             }
 
-            if (HOTEL_DB_FILE.createNewFile()) {
+            if(HOTEL_DB_FILE.createNewFile()){
 
                 bf = new BufferedWriter(new FileWriter(HOTEL_DB_FILE));
 
-                for (Map.Entry<Integer, RoomObj> entry : hashMap.entrySet()) {
+                for(Map.Entry<Integer, RoomObj> entry : hashMap.entrySet()){
+
                     bf.write(entry.getKey() + ":" + "["+entry.getValue().getGuestName() +","
                             +entry.getValue().getRoomNumber()+","+entry.getValue().getPetAllowed()+","+
                             entry.getValue().getNumberOfBeds()+","+entry.getValue().getSuiteLevel()+","+
@@ -42,8 +50,7 @@ public class Database {
                 bf.flush();
             }
 
-
-        } catch (IOException e) {
+        } catch(IOException e){
 
             throw new RuntimeException(e);
         }
