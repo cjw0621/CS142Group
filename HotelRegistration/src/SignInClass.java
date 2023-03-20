@@ -17,15 +17,13 @@ public class SignInClass {
         HashMap<String,String > readEmployeeDB = Database.readEmployeeDBFile(false);
         HashMap<String, String> readManagerDB = Database.readEmployeeDBFile(true);
 
-        if (readEmployeeDB.containsKey(username) &&
-                readEmployeeDB.get(username).equals(password)) {
+        if (readEmployeeDB.containsKey(username) && readEmployeeDB.get(username).equals(password)) {
 
             System.out.println("Welcome " + username + "!");
-           successEM = true;
-           successMA = false;
+            successEM = true;
+            successMA = false;
 
-        } else if (readManagerDB.containsKey(username) &&
-                readManagerDB.get(username).equals(password)) {
+        } else if (readManagerDB.containsKey(username) && readManagerDB.get(username).equals(password)) {
 
             System.out.println("Welcome " + username + "!");
             successMA = true;
@@ -34,7 +32,7 @@ public class SignInClass {
 
        else {
 
-        System.out.println("Incorrect username or password. Please try again, or create an account.");
+            System.out.println("Incorrect username or password. Please try again, or create an account.");
 
         }
 

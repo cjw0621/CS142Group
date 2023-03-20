@@ -7,6 +7,7 @@ public class Main {
         String exit = "//";
 
         while (true) {
+
             System.out.println("Welcome!\nPress Enter:");
             String userInput = sc.nextLine();
 
@@ -50,7 +51,6 @@ public class Main {
                 //insert check available room method here
 
             } else if (input.equals("3")) {
-                //insert configuration method here
 
                 HotelConfiguration.config();
 

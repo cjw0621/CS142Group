@@ -1,19 +1,21 @@
 public class RoomObj {
-    //create a room object with object parameters int roomnumbers, double price, boolean pet allowed,
-    // int number of bed, Boolean issuite
-
     private int roomNumber;
-    private double price;
     private boolean petAllowed;
     private int numberOfBeds;
-    private boolean isSuite;
+    private int suiteStatus;
+    private String cleanStatus;
+    private double price;
 
-    public RoomObj(int roomNumber, double price, boolean petAllowed, int numberOfBeds, boolean isSuite){
+    public RoomObj(int roomNumber, boolean petAllowed, int numberOfBeds, int suiteStatus, String cleanStatus,
+                   double price){
+
         setRoomNumber(roomNumber);
-        setPrice(price);
         setPetAllowed(petAllowed);
         setNumberOfBeds(numberOfBeds);
-        setSuite(isSuite);
+        setSuite(suiteStatus);
+        setCleanStatus(cleanStatus);
+        setPrice(price);
+
     }
 
     public int getRoomNumber() {
@@ -22,14 +24,6 @@ public class RoomObj {
 
     private void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    private void setPrice(double price) {
-        this.price = price;
     }
 
     public boolean isPetAllowed() {
@@ -48,11 +42,27 @@ public class RoomObj {
         this.numberOfBeds = numberOfBeds;
     }
 
-    public boolean isSuite() {
-        return isSuite;
+    public int isSuite() {
+        return suiteStatus;
     }
 
-    private void setSuite(boolean suite) {
-        isSuite = suite;
+    private void setSuite(int suite) {
+        suiteStatus = suite;
+    }
+
+    public String getCleanStatus(){
+        return this.cleanStatus;
+    }
+
+    private void setCleanStatus(String color){
+        this.cleanStatus = color;
+    }
+
+    public double getPrice(){
+        return this.price;
+    }
+
+    private void setPrice(double price){
+        this.price = price;
     }
 }
