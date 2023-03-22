@@ -4,6 +4,8 @@ import java.util.LinkedList;
 /*
 This class creates an employee username and password if password created is valid, field boolean created Account is
 used to verify that employee account was created.
+
+this is a test
 */
 public class EmployeeInfo {
     private static String username;
