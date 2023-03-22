@@ -63,7 +63,6 @@ public class Database {
         String[] roomObjArr = new String[7];
         HashMap<Integer, String[]> roomHashMap = new HashMap<>();
 
-
        try {
 
                String lineEm;
@@ -86,14 +85,8 @@ public class Database {
                brEm.close();
                frEm.close();
 
-
-
-
        } catch(IOException ignore) {
        }
-
-
-
 
         return roomHashMap;
    }
