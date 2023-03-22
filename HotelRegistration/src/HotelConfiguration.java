@@ -38,7 +38,7 @@ public class HotelConfiguration{
         return counter == 0;
     }
 
-    private static int stringToInt(String a){
+    public static int stringToInt(String a){
         //Converts String type number into an Int type number.
         return Integer.parseInt(a);
     }
@@ -387,6 +387,15 @@ public class HotelConfiguration{
 
 
     }
+
+
+    /*
+     * Method with no parameters or return value. Takes in variables with values given by the users input
+     * and auto generates room objects that are then saved as values in the hashmap with index as keys
+     *
+     */
+
+
 
 
 
