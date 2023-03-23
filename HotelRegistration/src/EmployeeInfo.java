@@ -19,6 +19,8 @@ public class EmployeeInfo {
 
     public EmployeeInfo(String username, String password, boolean isManager) {
 
+
+
         if(userNameChk(username) && passCheck(password) ){
                 setUsername(username);
                 setPassword(password);

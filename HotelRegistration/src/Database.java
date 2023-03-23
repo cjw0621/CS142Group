@@ -70,17 +70,18 @@ public class Database {
                FileReader frEm = new FileReader(EMPLOYEE_DB_FILE);
                BufferedReader brEm = new BufferedReader(frEm);
 
-               while((lineEm = brEm.readLine()) != null) {
+               while((lineEm = brEm.readLine()) != null)
+               {
 
                    String hashKey ="";
                    String[] parts = lineEm.split(":");
 
-                   for(int i = 0; i < parts[1].length(); i++){
+                   for(int i = 0; i < parts[1].length(); i++)
+                   {
                        hashKey = parts[0].trim();
                        roomObjArr[i]=parts[i].trim();
                    }
 
-                   roomHashMap.put(HotelConfiguration.stringToInt(hashKey), roomObjArr);
                }
 
                brEm.close();
