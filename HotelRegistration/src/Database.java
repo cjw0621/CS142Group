@@ -58,36 +58,47 @@ public class Database {
 
 
 
-   public static HashMap<Integer, String[]> readHotelDBTxt(){
+   public static HashMap<Integer, String> readHotelDBTxt(){
+
 
         String[] roomObjArr = new String[7];
-        HashMap<Integer, String[]> roomHashMap = new HashMap<>();
+
+
+        HashMap<Integer, String> roomHashMap = new HashMap<>();
 
        try {
 
                String lineEm;
-               FileReader frEm = new FileReader(EMPLOYEE_DB_FILE);
+               FileReader frEm = new FileReader("HotelDB.txt");
                BufferedReader brEm = new BufferedReader(frEm);
 
-               while((lineEm = brEm.readLine()) != null)
-               {
+               while((lineEm = brEm.readLine()) != null) {
 
-                   String hashKey ="";
                    String[] parts = lineEm.split(":");
 
-                   for(int i = 0; i < parts[1].length(); i++)
-                   {
-                       hashKey = parts[0].trim();
-                       roomObjArr[i]=parts[i].trim();
-                   }
+                   String index = parts[0].trim();
+                   String roomobj = parts[1].trim();
+                   System.out.println(index + ": " + roomobj);
+
+                   roomHashMap.put(HotelConfiguration.stringToInt(index), roomobj);
+
+                   //TODO: Create a for loop to iterate through each index of the hotel hashmap and split(",")
+                   // the String, iterate through the string and save the values into local variables and pass variables
+                   // as room objects. 
+
+
 
                }
+
+
 
                brEm.close();
                frEm.close();
 
        } catch(IOException ignore) {
        }
+
+
 
         return roomHashMap;
    }
