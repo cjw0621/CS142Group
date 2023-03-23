@@ -47,6 +47,8 @@ public class Main {
             if(input.equals("1")){
                 //insert check in and check out method here
 
+                CheckInOut.guestCheckInOut();
+
                 //TODO: Create a guest Check in/out class
 
             }else if(input.equals("2")){
