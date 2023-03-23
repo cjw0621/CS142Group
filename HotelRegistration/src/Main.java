@@ -49,9 +49,7 @@ public class Main {
 
                 //TODO: Create a guest Check in/out class
 
-
-            else if(input.equals("2"))
-            {
+            }else if(input.equals("2")){
                 //insert check available room method here
 
                 //TODO: Create a room check method in Guest Check in/out class
