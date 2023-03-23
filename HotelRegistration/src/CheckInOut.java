@@ -70,9 +70,7 @@ public class CheckInOut
             }
         }
 
-
-       else if (hasPETS =='y' && !dogBREED.equals("rottweiler") && petBREED.equals("dog"))
-    {
+        if(hasPETS =='y' && !dogBREED.equals("rottweiler") && petBREED.equals("dog")) {
             System.out.print("Please input the number of adults that will be staying at the hotel = ");
             int Number_Of_Adults = Integer.parseInt(sc.next());
 
@@ -94,8 +92,7 @@ public class CheckInOut
 
         }
 
-        else if (hasPETS =='n')
-        {
+        if (hasPETS =='n'){
             System.out.print("Please input the number of adults that will be staying at the hotel = ");
             int Number_Of_Adults = Integer.parseInt(sc.next());
 
