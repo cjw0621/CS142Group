@@ -4,6 +4,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
+import java.util.function.IntToDoubleFunction;
+
 public class Database {
     private final static String EMPLOYEE_DB = "EmployeeDB.txt";
     private final static String MANAGER_DB = "ManagerDB.txt";
@@ -52,6 +54,48 @@ public class Database {
 
             throw new RuntimeException(e);
         }
+   }
+
+
+
+   public static HashMap<Integer, String[]> readHotelDBTxt(){
+
+        String[] roomObjArr = new String[7];
+        HashMap<Integer, String[]> roomHashMap = new HashMap<>();
+
+
+       try {
+
+               String lineEm;
+               FileReader frEm = new FileReader(EMPLOYEE_DB_FILE);
+               BufferedReader brEm = new BufferedReader(frEm);
+
+               while((lineEm = brEm.readLine()) != null) {
+
+                   String hashKey ="";
+                   String[] parts = lineEm.split(":");
+
+                   for(int i = 0; i < parts[1].length(); i++){
+                       hashKey = parts[0].trim();
+                       roomObjArr[i]=parts[i].trim();
+                   }
+
+                   roomHashMap.put(HotelConfiguration.stringToInt(hashKey), roomObjArr);
+               }
+
+               brEm.close();
+               frEm.close();
+
+
+
+
+       } catch(IOException ignore) {
+       }
+
+
+
+
+        return roomHashMap;
    }
 
 

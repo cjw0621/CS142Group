@@ -57,6 +57,7 @@ public class Main {
             } else if(input.equals("3")){
 
                 HotelConfiguration.config();
+
                 //TODO: Create a readHotelDBTxt method in Database Class
 
             } else if(input.equals(exit)){
