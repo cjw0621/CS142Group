@@ -328,7 +328,7 @@ public class HotelConfiguration {
 
                     for (j = 0; j < PET_FRIENDLY_ROOMS.size(); ++j) {
 
-                        if (i == (Integer) PET_FRIENDLY_ROOMS.get(j)) {
+                        if (i == PET_FRIENDLY_ROOMS.get(j)) {
 
                             hotelRooms.get(i).setPrice(priceStandardRoom + pricePetCleaningFee);
                             hotelRooms.get(i).setPetAllowed(true);
@@ -346,7 +346,7 @@ public class HotelConfiguration {
             if (STANDARD_SUITE_ROOMS.size() != 0) {
                 for (i = 0; i < maxNumOfRooms; ++i) {
                     for (j = 0; j < STANDARD_SUITE_ROOMS.size(); ++j) {
-                        if (i == (Integer) STANDARD_SUITE_ROOMS.get(j)) {
+                        if (i == STANDARD_SUITE_ROOMS.get(j)) {
                             hotelRooms.get(i).setPrice(priceMidRoom);
                             hotelRooms.get(i).setSuiteLevel(2);
                             hotelRooms.get(i).setNumberOfBeds(2);
@@ -366,10 +366,11 @@ public class HotelConfiguration {
             if (LUXURY_LEVEL_SUITE_ROOMS.size() != 0) {
                 for (i = 0; i < maxNumOfRooms; ++i) {
                     for (j = 0; j < LUXURY_LEVEL_SUITE_ROOMS.size(); ++j) {
-                        if (i == (Integer) LUXURY_LEVEL_SUITE_ROOMS.get(j)) {
+                        if (i == LUXURY_LEVEL_SUITE_ROOMS.get(j)) {
                            hotelRooms.get(i).setSuiteLevel(3);
                            hotelRooms.get(i).setNumberOfBeds(3);
                            hotelRooms.get(i).setPrice(priceLuxuryRoom);
+
                             if (hotelRooms.get(i).getPetAllowed()) {
                                 hotelRooms.get(i).setPrice(priceLuxuryRoom + pricePetCleaningFee);
                             }
