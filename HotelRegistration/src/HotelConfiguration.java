@@ -20,7 +20,14 @@ public class HotelConfiguration {
     private static double priceLuxuryRoom;
     private static double priceExecutiveRoom;
     private static double pricePetCleaningFee;
-    public static RoomObj rooms;
+    private static String guestName ="Vacant";
+    private static int roomNum = -1;
+    private static boolean petAllowed = false;
+    private static int numOfBeds = -1;
+    private static int suiteLevel = -1;
+    private static String cleanStatus = "";
+    private static double price = -1.00;
+
 
 
         public static boolean isBoolean(String ui){
@@ -297,11 +304,13 @@ public class HotelConfiguration {
             int j;
 
             for (i = 0; i != maxNumOfRooms; ++i) {
-                hotelRooms.put(i, rooms);
+                hotelRooms.put(i, new RoomObj(guestName,roomNum,petAllowed,numOfBeds, suiteLevel, cleanStatus, price));
             }
 
-            for (i = 0; i < hotelRooms.size(); ++i) {
-                hotelRooms.get(i).setRoomNumber(i + 1);
+
+
+            for (i = 0; i < hotelRooms.size(); i++) {
+                hotelRooms.get(i).setRoomNumber(i+1);
                 hotelRooms.get(i).setPrice(priceStandardRoom);
                 hotelRooms.get(i).setNumberOfBeds(1);
                 hotelRooms.get(i).setPetAllowed(allRoomsPetFriendly);
