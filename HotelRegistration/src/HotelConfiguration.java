@@ -405,7 +405,4 @@ public class HotelConfiguration {
             Database.writeHotelDBtoTxt(hotelRooms);
         }
 
-
-
-
 }
