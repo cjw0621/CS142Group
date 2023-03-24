@@ -40,7 +40,7 @@ public class Main {
 
         while(true){
 
-            System.out.print("1: Check In/Out A Guest\n2: Check Available Rooms\n3: Configuration\nType '//' to " +
+            System.out.print("1: Check In/Out A Guest\n2: Check Available Rooms\n3: To Find A Guest\n4: Configuration\nType '//' to " +
                     "Exit\n>> ");
             String input = sc.nextLine();
 
@@ -49,15 +49,12 @@ public class Main {
                 CheckInOut.guestCheckInOut();
 
             }else if(input.equals("2")){
-                //insert check available room method here
 
-                //TODO: Create a room check method in Guest Check in/out class
+                CheckRoom.getVacantRoom();
 
             } else if(input.equals("3")){
 
                 HotelConfiguration.config();
-
-                //TODO: Create a readHotelDBTxt method in Database Class
 
             } else if(input.equals(exit)){
 
