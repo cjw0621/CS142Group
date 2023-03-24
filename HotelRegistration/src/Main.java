@@ -45,11 +45,8 @@ public class Main {
             String input = sc.nextLine();
 
             if(input.equals("1")){
-                //insert check in and check out method here
 
                 CheckInOut.guestCheckInOut();
-
-                //TODO: Create a guest Check in/out class
 
             }else if(input.equals("2")){
                 //insert check available room method here
