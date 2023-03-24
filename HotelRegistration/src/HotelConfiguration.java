@@ -40,18 +40,16 @@ public class HotelConfiguration {
             String ltr = "abcdefghijklmnopqrstuvwxyz?><:!@#$%^&*()_+~`,/;'[]|{}-";
             String[] uiArr = ui.split("");
             String[] ltrArr = ltr.split("");
-            String[] var5 = ltrArr;
-            int var6 = ltrArr.length;
+            int ltrArrlength = ltrArr.length;
 
-            for (int var7 = 0; var7 < var6; ++var7) {
-                String value = var5[var7];
-                String[] var9 = uiArr;
+            for (int i = 0; i < ltrArrlength; i++) {
+                String value = ltrArr[i];
                 int var10 = uiArr.length;
 
-                for (int var11 = 0; var11 < var10; ++var11) {
-                    String s = var9[var11];
+                for (int j = 0; j < var10; j++) {
+                    String s = uiArr[j];
                     if (value.equals(s.toLowerCase())) {
-                        ++counter;
+                        counter++;
                     }
                 }
             }
@@ -330,7 +328,7 @@ public class HotelConfiguration {
 
                     for (j = 0; j < PET_FRIENDLY_ROOMS.size(); ++j) {
 
-                        if (i == (Integer) PET_FRIENDLY_ROOMS.get(j)) {
+                        if (i == PET_FRIENDLY_ROOMS.get(j)) {
 
                             hotelRooms.get(i).setPrice(priceStandardRoom + pricePetCleaningFee);
                             hotelRooms.get(i).setPetAllowed(true);
@@ -348,7 +346,7 @@ public class HotelConfiguration {
             if (STANDARD_SUITE_ROOMS.size() != 0) {
                 for (i = 0; i < maxNumOfRooms; ++i) {
                     for (j = 0; j < STANDARD_SUITE_ROOMS.size(); ++j) {
-                        if (i == (Integer) STANDARD_SUITE_ROOMS.get(j)) {
+                        if (i == STANDARD_SUITE_ROOMS.get(j)) {
                             hotelRooms.get(i).setPrice(priceMidRoom);
                             hotelRooms.get(i).setSuiteLevel(2);
                             hotelRooms.get(i).setNumberOfBeds(2);
@@ -368,10 +366,11 @@ public class HotelConfiguration {
             if (LUXURY_LEVEL_SUITE_ROOMS.size() != 0) {
                 for (i = 0; i < maxNumOfRooms; ++i) {
                     for (j = 0; j < LUXURY_LEVEL_SUITE_ROOMS.size(); ++j) {
-                        if (i == (Integer) LUXURY_LEVEL_SUITE_ROOMS.get(j)) {
+                        if (i == LUXURY_LEVEL_SUITE_ROOMS.get(j)) {
                            hotelRooms.get(i).setSuiteLevel(3);
                            hotelRooms.get(i).setNumberOfBeds(3);
                            hotelRooms.get(i).setPrice(priceLuxuryRoom);
+
                             if (hotelRooms.get(i).getPetAllowed()) {
                                 hotelRooms.get(i).setPrice(priceLuxuryRoom + pricePetCleaningFee);
                             }
@@ -386,17 +385,24 @@ public class HotelConfiguration {
             }
 
             if (EXECUTIVE_LEVEL_SUITE_ROOMS.size() != 0) {
+
                 for (i = 0; i < maxNumOfRooms; ++i) {
+
                     for (j = 0; j < EXECUTIVE_LEVEL_SUITE_ROOMS.size(); ++j) {
-                        if (i == (Integer) EXECUTIVE_LEVEL_SUITE_ROOMS.get(j)) {
-                            ((RoomObj) hotelRooms.get(i)).setSuiteLevel(4);
-                            ((RoomObj) hotelRooms.get(i)).setNumberOfBeds(4);
-                            ((RoomObj) hotelRooms.get(i)).setPrice(priceExecutiveRoom);
-                            if (((RoomObj) hotelRooms.get(i)).getPetAllowed()) {
-                                ((RoomObj) hotelRooms.get(i)).setPrice(priceExecutiveRoom + pricePetCleaningFee);
+
+                        if (i == EXECUTIVE_LEVEL_SUITE_ROOMS.get(j)) {
+                            hotelRooms.get(i).setSuiteLevel(4);
+                            hotelRooms.get(i).setNumberOfBeds(4);
+                            hotelRooms.get(i).setPrice(priceExecutiveRoom);
+
+                            if (hotelRooms.get(i).getPetAllowed()) {
+                                hotelRooms.get(i).setPrice(priceExecutiveRoom + pricePetCleaningFee);
                             }
 
-                            hotelRooms.replace(i, hotelRooms.get(i), new RoomObj(((RoomObj) hotelRooms.get(i)).getGuestName(), ((RoomObj) hotelRooms.get(i)).getRoomNumber(), ((RoomObj) hotelRooms.get(i)).getPetAllowed(), ((RoomObj) hotelRooms.get(i)).getNumberOfBeds(), ((RoomObj) hotelRooms.get(i)).getSuiteLevel(), ((RoomObj) hotelRooms.get(i)).getCleanStatus(), ((RoomObj) hotelRooms.get(i)).getPrice()));
+                            hotelRooms.replace(i, hotelRooms.get(i), new RoomObj(hotelRooms.get(i).getGuestName(),
+                                   hotelRooms.get(i).getRoomNumber(), hotelRooms.get(i).getPetAllowed(),
+                                    hotelRooms.get(i).getNumberOfBeds(),hotelRooms.get(i).getSuiteLevel(),
+                                    hotelRooms.get(i).getCleanStatus(), hotelRooms.get(i).getPrice()));
                         }
                     }
                 }
@@ -404,8 +410,5 @@ public class HotelConfiguration {
 
             Database.writeHotelDBtoTxt(hotelRooms);
         }
-
-
-
 
 }
