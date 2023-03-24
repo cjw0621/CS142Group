@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -6,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String exit = "//";
+        final File HOTEL_DB_FILE = new File("HotelDB.txt");
 
 
         System.out.println("Welcome!\n");
@@ -22,6 +24,12 @@ public class Main {
             if(userInput.equals("1")){
 
                 SignInClass.signIn();
+                if(!HOTEL_DB_FILE.exists()){
+
+                    System.out.println("\nLets Configure Your Hotel: \n");
+                    HotelConfiguration.config();
+
+                }
 
             }else if(userInput.equals("2")){
 
