@@ -69,11 +69,12 @@ public class CheckRoom {
 
 
     public static void getVacantRoom(){
+        System.out.println("Vacant Rooms: ");
         for(int i = 0; i < guestRoom.size(); i++){
             if(guestRoom.get(i).getGuestName().equalsIgnoreCase("vacant")){
 
-                System.out.println("Vacant Rooms: ");
-                System.out.println(guestRoom.get(i).getRoomNumber());
+                System.out.print("Room #: ");
+                System.out.print(guestRoom.get(i).getRoomNumber()+"\n");
             }
         }
     }

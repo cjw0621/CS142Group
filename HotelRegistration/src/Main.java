@@ -3,20 +3,12 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String exit = "//";
 
-        while(true){
 
-            System.out.println("Welcome!\nPress Enter:");
-            String userInput = sc.nextLine();
-
-            if(userInput.equals("") || userInput.equals(" ")){
-
-                break;
-            }
-        }
+        System.out.println("Welcome!\n");
 
         while(!SignInClass.successEM && !SignInClass.successMA){
 
@@ -40,7 +32,7 @@ public class Main {
 
         while(true){
 
-            System.out.print("1: Check In/Out A Guest\n2: Check Available Rooms\n3: To Find A Guest\n4: Configuration\nType '//' to " +
+            System.out.print("\n1: Check In/Out A Guest\n2: Check Available Rooms\n3: To Find A Guest\n4: Configuration\nType '//' to " +
                     "Exit\n>> ");
             String input = sc.nextLine();
 
