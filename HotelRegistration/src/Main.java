@@ -1,22 +1,16 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String exit = "//";
+        final File HOTEL_DB_FILE = new File("HotelDB.txt");
 
-        while(true){
 
-            System.out.println("Welcome!\nPress Enter:");
-            String userInput = sc.nextLine();
-
-            if(userInput.equals("") || userInput.equals(" ")){
-
-                break;
-            }
-        }
+        System.out.println("Welcome!\n");
 
         while(!SignInClass.successEM && !SignInClass.successMA){
 
@@ -30,6 +24,12 @@ public class Main {
             if(userInput.equals("1")){
 
                 SignInClass.signIn();
+                if(!HOTEL_DB_FILE.exists()){
+
+                    System.out.println("\nLets Configure Your Hotel: \n");
+                    HotelConfiguration.config();
+
+                }
 
             }else if(userInput.equals("2")){
 
@@ -40,27 +40,21 @@ public class Main {
 
         while(true){
 
-            System.out.print("1: Check In/Out A Guest\n2: Check Available Rooms\n3: Configuration\nType '//' to " +
+            System.out.print("\n1: Check In/Out A Guest\n2: Check Available Rooms\n3: To Find A Guest\n4: Configuration\nType '//' to " +
                     "Exit\n>> ");
             String input = sc.nextLine();
 
             if(input.equals("1")){
-                //insert check in and check out method here
 
                 CheckInOut.guestCheckInOut();
 
-                //TODO: Create a guest Check in/out class
-
             }else if(input.equals("2")){
-                //insert check available room method here
 
-                //TODO: Create a room check method in Guest Check in/out class
+               CheckRoom.getVacantRoom();
 
             } else if(input.equals("3")){
 
                 HotelConfiguration.config();
-
-                //TODO: Create a readHotelDBTxt method in Database Class
 
             } else if(input.equals(exit)){
 

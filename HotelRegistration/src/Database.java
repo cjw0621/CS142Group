@@ -4,7 +4,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
-import java.util.function.IntToDoubleFunction;
 
 public class Database {
     private final static String EMPLOYEE_DB = "EmployeeDB.txt";
@@ -15,7 +14,6 @@ public class Database {
     private final static File HOTEL_DB_FILE = new File(HOTEL_DB);
 
 
-    //TODO: Write a readHotelDBTxt method.
 
     /*
      * WriteHotelDBtoTxt takes in a HashMap as a parameter, parses it, and copies the values from the HashMap
@@ -58,39 +56,51 @@ public class Database {
 
 
 
-   public static HashMap<Integer, String[]> readHotelDBTxt(){
+   public static HashMap<Integer, RoomObj> readHotelDBTxt(){
 
-        String[] roomObjArr = new String[7];
-        HashMap<Integer, String[]> roomHashMap = new HashMap<>();
+        HashMap<Integer, String> tempRoomHashMap = new HashMap<>();
+        HashMap<Integer, RoomObj> roomHashMap = new HashMap<>();
 
        try {
-
                String lineEm;
-               FileReader frEm = new FileReader(EMPLOYEE_DB_FILE);
+               FileReader frEm = new FileReader("HotelDB.txt");
                BufferedReader brEm = new BufferedReader(frEm);
 
-               while((lineEm = brEm.readLine()) != null)
-               {
+               while((lineEm = brEm.readLine()) != null) {
 
-                   String hashKey ="";
                    String[] parts = lineEm.split(":");
-
-                   for(int i = 0; i < parts[1].length(); i++)
-                   {
-                       hashKey = parts[0].trim();
-                       roomObjArr[i]=parts[i].trim();
-                   }
+                   String index = parts[0].trim();
+                   String roomObj = parts[1].trim();
+                   tempRoomHashMap.put(HotelConfiguration.stringToInt(index), roomObj);
 
                }
+
+           for(int i = 0; i < tempRoomHashMap.size(); i++){
+
+               tempRoomHashMap.put(i,tempRoomHashMap.get(i).replaceAll("\\[","")
+                      .replaceAll("\\]", ""));
+
+               String[] strRoom = tempRoomHashMap.get(i).split(",");
+
+               String guestName = strRoom[0];
+               int roomNumber = HotelConfiguration.stringToInt(strRoom[1]);
+               boolean petAllowed = HotelConfiguration.isBoolean(strRoom[2]);
+               int numberOfBeds = HotelConfiguration.stringToInt(strRoom[3]);
+               int suiteLevel = HotelConfiguration.stringToInt(strRoom[4]);
+               String cleanStatus = strRoom[5];
+               double price = HotelConfiguration.stringToDouble(strRoom[6]);
+
+                roomHashMap.put(i, new RoomObj(guestName, roomNumber, petAllowed, numberOfBeds, suiteLevel, cleanStatus,
+                        price));
+           }
 
                brEm.close();
                frEm.close();
 
-       } catch(IOException ignore) {
-       }
+       } catch(IOException ignore) {}
 
         return roomHashMap;
-   }
+    }
 
 
 

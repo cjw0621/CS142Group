@@ -25,7 +25,7 @@ public class SignInClass {
 
         } else if (readManagerDB.containsKey(username) && readManagerDB.get(username).equals(password)) {
 
-            System.out.println("Welcome " + username + "!");
+            System.out.println("\nWelcome " + username + "!");
             successMA = true;
             successEM = false;
         }
