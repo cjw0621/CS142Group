@@ -16,23 +16,6 @@ public class CheckRoom {
         return -1;
     }
 
-    public static void getVacantRoom(){
-        for(int i = 0; i < guestRoom.size(); i++){
-
-            if(guestRoom.get(i).getGuestName().equalsIgnoreCase("vacant")){
-                System.out.println(guestRoom.get(i));
-            }
-        }
-    }
-
-    public static void checkGuestOut(String guestName){
-        for(int i = 0; i < guestRoom.size(); i++){
-            if(guestRoom.get(i).getGuestName().equalsIgnoreCase(guestName)){
-                guestRoom.get(i).setGuestName("Vacant");
-                break;
-            }
-        }
-    }
 
     public static String findGuest(int roomNumber){
 
@@ -47,5 +30,55 @@ public class CheckRoom {
 
         return "Guest Was Not Found!";
     }
+
+
+    public static int getVacantRoom(boolean hasPets) {
+        if (hasPets) {
+            for (int i = 0; i < guestRoom.size(); i++) {
+
+                if (guestRoom.get(i).getPetAllowed()) {
+
+                    if (guestRoom.get(i).getGuestName().equalsIgnoreCase("vacant")) {
+
+                        return guestRoom.get(i).getRoomNumber();
+
+                    } else {
+
+                        System.out.println("No Pet Friendly Rooms Are Available!");
+                        return -1;
+                    }
+                }
+            }
+        } else {
+
+            for (int i = 0; i < guestRoom.size(); i++) {
+
+                if (!guestRoom.get(i).getPetAllowed()) {
+
+                    if (guestRoom.get(i).getGuestName().equalsIgnoreCase("vacant")) {
+
+                        return guestRoom.get(i).getRoomNumber();
+
+                    }
+                }
+            }
+        }
+        System.out.println("***No Vacant Rooms Available!***");
+        return -1;
+    }
+
+
+    public static void getVacantRoom(){
+        for(int i = 0; i < guestRoom.size(); i++){
+            if(guestRoom.get(i).getGuestName().equalsIgnoreCase("vacant")){
+
+                System.out.println("Vacant Rooms: ");
+                System.out.println(guestRoom.get(i).getRoomNumber());
+            }
+        }
+    }
+
+
+
 
 }

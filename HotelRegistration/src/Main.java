@@ -50,7 +50,7 @@ public class Main {
 
             }else if(input.equals("2")){
 
-                CheckRoom.getVacantRoom();
+               CheckRoom.getVacantRoom();
 
             } else if(input.equals("3")){
 
