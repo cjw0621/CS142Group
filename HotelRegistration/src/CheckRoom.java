@@ -11,7 +11,9 @@ public class CheckRoom
         {
             if(guestRoom.get(i).getGuestName().equalsIgnoreCase(guestName))
             {
+                System.out.print(guestName + ": Room #: " );
                 System.out.println(guestRoom.get(i).getRoomNumber());
+
                 return guestRoom.get(i).getRoomNumber();
             }
         }

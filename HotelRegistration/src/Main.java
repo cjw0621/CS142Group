@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -40,19 +39,50 @@ public class Main {
 
         while(true){
 
-            System.out.print("\n1: Check In/Out A Guest\n2: Check Available Rooms\n3: To Find A Guest\n4: Configuration\nType '//' to " +
-                    "Exit\n>> ");
+            System.out.print("\n1: Check In/Out A Guest\n2: Check Available Rooms\n3: To Find A Guest Or Guest Room" +
+                    "\n4: Configuration\nType '//' to Exit\n>> ");
+
             String input = sc.nextLine();
 
             if(input.equals("1")){
 
-                CheckInOut.guestCheckInOut();
+                while(true) {
+                    System.out.println("\n1: Check-In A Guest\n2: Check-Out A Guest");
+                    String chkInOrOut = sc.nextLine();
+
+                    if (chkInOrOut.equalsIgnoreCase("1")) {
+                        CheckInOut.guestCheckIn();
+
+                    } else if (chkInOrOut.equalsIgnoreCase("2")) {
+                        CheckInOut.guestCheckOut();
+
+                    } else if(chkInOrOut.equalsIgnoreCase("//")){
+                        break;
+                    }
+                    else {
+                        System.out.println("Response Was Not Recognized! Try Again!");
+                    }
+                }
 
             }else if(input.equals("2")){
 
                CheckRoom.getVacantRoom();
 
-            } else if(input.equals("3")){
+            }else if(input.equals("3")){
+
+                System.out.print("\nPlease Enter Guests Name Or Room Number: \n>>");
+                input = sc.nextLine();
+
+                if(HotelConfiguration.isNum(input)){
+                   int roomNum = HotelConfiguration.stringToInt(input);
+                   CheckRoom.findGuest(roomNum);
+                }else{
+                    CheckRoom.findGuestRoom(input);
+                }
+
+            }
+
+            else if(input.equals("4")){
 
                 HotelConfiguration.config();
 

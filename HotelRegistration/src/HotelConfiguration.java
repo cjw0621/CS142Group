@@ -35,21 +35,19 @@ public class HotelConfiguration {
         }
 
 
-        private static boolean isNum (String ui){
+        public static boolean isNum (String ui){
             int counter = 0;
             String ltr = "abcdefghijklmnopqrstuvwxyz?><:!@#$%^&*()_+~`,/;'[]|{}-";
             String[] uiArr = ui.split("");
             String[] ltrArr = ltr.split("");
-            String[] var5 = ltrArr;
-            int var6 = ltrArr.length;
+            int ltrLength = ltrArr.length;
 
-            for (int var7 = 0; var7 < var6; ++var7) {
-                String value = var5[var7];
-                String[] var9 = uiArr;
-                int var10 = uiArr.length;
+            for (int i = 0; i < ltrLength; ++i) {
+                String value = ltrArr[i];
+                int uiArrLength = uiArr.length;
 
-                for (int var11 = 0; var11 < var10; ++var11) {
-                    String s = var9[var11];
+                for (int j = 0; j < uiArrLength; ++j) {
+                    String s = uiArr[j];
                     if (value.equals(s.toLowerCase())) {
                         ++counter;
                     }
