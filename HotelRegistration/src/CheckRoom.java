@@ -1,12 +1,16 @@
 import java.util.HashMap;
 
-public class CheckRoom {
+public class CheckRoom
+{
     private static final HashMap<Integer, RoomObj> guestRoom = Database.readHotelDBTxt();
 
-    public static int findGuestRoom(String guestName){
+    public static int findGuestRoom(String guestName)
+    {
 
-        for(int i = 0; i < guestRoom.size(); i++){
-            if(guestRoom.get(i).getGuestName().equalsIgnoreCase(guestName)){
+        for(int i = 0; i < guestRoom.size(); i++)
+        {
+            if(guestRoom.get(i).getGuestName().equalsIgnoreCase(guestName))
+            {
                 System.out.println(guestRoom.get(i).getRoomNumber());
                 return guestRoom.get(i).getRoomNumber();
             }
@@ -17,11 +21,14 @@ public class CheckRoom {
     }
 
 
-    public static String findGuest(int roomNumber){
+    public static String findGuest(int roomNumber)
+    {
 
-        for(int i = 0; i < guestRoom.size(); i++){
+        for(int i = 0; i < guestRoom.size(); i++)
+        {
 
-            if(guestRoom.get(i).getRoomNumber() == roomNumber){
+            if(guestRoom.get(i).getRoomNumber() == roomNumber)
+            {
                 System.out.println(guestRoom.get(i).getGuestName());
                 return guestRoom.get(i).getGuestName();
             }
@@ -32,30 +39,42 @@ public class CheckRoom {
     }
 
 
-    public static int getVacantRoom(boolean hasPets) {
-        if (hasPets) {
-            for (int i = 0; i < guestRoom.size(); i++) {
+    public static int getVacantRoom(boolean hasPets)
+    {
+        if (hasPets)
+        {
+            for (int i = 0; i < guestRoom.size(); i++)
+            {
 
-                if (guestRoom.get(i).getPetAllowed()) {
+                if (guestRoom.get(i).getPetAllowed())
+                {
 
-                    if (guestRoom.get(i).getGuestName().equalsIgnoreCase("vacant")) {
+                    if (guestRoom.get(i).getGuestName().equalsIgnoreCase("vacant"))
+                    {
 
                         return guestRoom.get(i).getRoomNumber();
 
-                    } else {
+                    }
+                    else
+                    {
 
                         System.out.println("No Pet Friendly Rooms Are Available!");
                         return -1;
                     }
                 }
             }
-        } else {
+        }
+        else
+        {
 
-            for (int i = 0; i < guestRoom.size(); i++) {
+            for (int i = 0; i < guestRoom.size(); i++)
+            {
 
-                if (!guestRoom.get(i).getPetAllowed()) {
+                if (!guestRoom.get(i).getPetAllowed())
+                {
 
-                    if (guestRoom.get(i).getGuestName().equalsIgnoreCase("vacant")) {
+                    if (guestRoom.get(i).getGuestName().equalsIgnoreCase("vacant"))
+                    {
 
                         return guestRoom.get(i).getRoomNumber();
 
@@ -68,13 +87,16 @@ public class CheckRoom {
     }
 
 
-    public static void getVacantRoom(){
+    public static void getVacantRoom()
+    {
 
         System.out.println("\nVacant Rooms: \n");
 
-        for(int i = 0; i < guestRoom.size(); i++){
+        for(int i = 0; i < guestRoom.size(); i++)
+        {
 
-            if(guestRoom.get(i).getGuestName().equalsIgnoreCase("vacant")){
+            if(guestRoom.get(i).getGuestName().equalsIgnoreCase("vacant"))
+            {
 
                 System.out.print("Room #: ");
                 System.out.print(guestRoom.get(i).getRoomNumber()+"\n");

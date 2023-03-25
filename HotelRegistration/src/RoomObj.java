@@ -5,7 +5,7 @@ public class RoomObj {
     private boolean petAllowed;
     private int numberOfBeds;
     private int suiteLevel;
-    private String cleanStatus;
+    public String cleanStatus;
     private double price;
 
     public RoomObj(String guestName, int roomNumber, boolean petAllowed, int numberOfBeds, int suiteLevel, String cleanStatus,

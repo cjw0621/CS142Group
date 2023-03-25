@@ -20,9 +20,12 @@ public class GuestCheckInOut {
 
     }
 
-    public static void checkGuestOut(int roomNumber){
-        for(int i = 0; i < guestRoom.size(); i++){
-            if(guestRoom.get(i).getRoomNumber() == roomNumber){
+    public static void checkGuestOut(int roomNumber)
+    {
+        for(int i = 0; i < guestRoom.size(); i++)
+        {
+            if(guestRoom.get(i).getRoomNumber() == roomNumber)
+            {
                 guestRoom.get(i).setGuestName("Vacant");
                 break;
             }
