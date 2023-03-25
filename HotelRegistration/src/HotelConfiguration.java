@@ -305,8 +305,6 @@ public class HotelConfiguration {
                 hotelRooms.put(i, new RoomObj(guestName,roomNum,petAllowed,numOfBeds, suiteLevel, cleanStatus, price));
             }
 
-
-
             for (i = 0; i < hotelRooms.size(); i++) {
                 hotelRooms.get(i).setRoomNumber(i+1);
                 hotelRooms.get(i).setPrice(priceStandardRoom);
@@ -315,10 +313,7 @@ public class HotelConfiguration {
                 hotelRooms.get(i).setSuiteLevel(1);
                 hotelRooms.get(i).setGuestName("vacant");
                 hotelRooms.get(i).setCleanStatus("green");
-                hotelRooms.replace(i, hotelRooms.get(i), new RoomObj(hotelRooms.get(i).getGuestName(),
-                        hotelRooms.get(i).getRoomNumber(), hotelRooms.get(i).getPetAllowed(),
-                        hotelRooms.get(i).getNumberOfBeds(), hotelRooms.get(i).getSuiteLevel(),
-                        hotelRooms.get(i).getCleanStatus(), hotelRooms.get(i).getPrice()));
+
             }
 
 
@@ -328,16 +323,11 @@ public class HotelConfiguration {
 
                     for (j = 0; j < PET_FRIENDLY_ROOMS.size(); ++j) {
 
-                        if (i == (Integer) PET_FRIENDLY_ROOMS.get(j)) {
+                        if (i == PET_FRIENDLY_ROOMS.get(j)) {
 
                             hotelRooms.get(i).setPrice(priceStandardRoom + pricePetCleaningFee);
                             hotelRooms.get(i).setPetAllowed(true);
 
-                            hotelRooms.replace(i, hotelRooms.get(i), new RoomObj(hotelRooms.get(i).getGuestName(),
-                                    hotelRooms.get(i).getRoomNumber(),hotelRooms.get(i).getPetAllowed(),
-                                    hotelRooms.get(i).getNumberOfBeds(),
-                                    hotelRooms.get(i).getSuiteLevel(),hotelRooms.get(i).getCleanStatus(),
-                                    hotelRooms.get(i).getPrice()));
                         }
                     }
                 }
@@ -353,11 +343,6 @@ public class HotelConfiguration {
                             if (hotelRooms.get(i).getPetAllowed()) {
                                 hotelRooms.get(i).setPrice(priceMidRoom + pricePetCleaningFee);
                             }
-
-                            hotelRooms.replace(i, hotelRooms.get(i), new RoomObj(hotelRooms.get(i).getGuestName(),
-                                  hotelRooms.get(i).getRoomNumber(), hotelRooms.get(i).getPetAllowed(),
-                                    hotelRooms.get(i).getNumberOfBeds(), hotelRooms.get(i).getSuiteLevel(),
-                                    hotelRooms.get(i).getCleanStatus(), hotelRooms.get(i).getPrice()));
                         }
                     }
                 }
@@ -373,11 +358,6 @@ public class HotelConfiguration {
                             if (hotelRooms.get(i).getPetAllowed()) {
                                 hotelRooms.get(i).setPrice(priceLuxuryRoom + pricePetCleaningFee);
                             }
-
-                            hotelRooms.replace(i, hotelRooms.get(i), new RoomObj(hotelRooms.get(i).getGuestName(),
-                                    hotelRooms.get(i).getRoomNumber(), hotelRooms.get(i).getPetAllowed(),
-                                    hotelRooms.get(i).getNumberOfBeds(), hotelRooms.get(i).getSuiteLevel(),
-                                    hotelRooms.get(i).getCleanStatus(), priceLuxuryRoom));
                         }
                     }
                 }
@@ -386,15 +366,13 @@ public class HotelConfiguration {
             if (EXECUTIVE_LEVEL_SUITE_ROOMS.size() != 0) {
                 for (i = 0; i < maxNumOfRooms; ++i) {
                     for (j = 0; j < EXECUTIVE_LEVEL_SUITE_ROOMS.size(); ++j) {
-                        if (i == (Integer) EXECUTIVE_LEVEL_SUITE_ROOMS.get(j)) {
-                            ((RoomObj) hotelRooms.get(i)).setSuiteLevel(4);
-                            ((RoomObj) hotelRooms.get(i)).setNumberOfBeds(4);
-                            ((RoomObj) hotelRooms.get(i)).setPrice(priceExecutiveRoom);
-                            if (((RoomObj) hotelRooms.get(i)).getPetAllowed()) {
-                                ((RoomObj) hotelRooms.get(i)).setPrice(priceExecutiveRoom + pricePetCleaningFee);
+                        if (i == EXECUTIVE_LEVEL_SUITE_ROOMS.get(j)) {
+                            hotelRooms.get(i).setSuiteLevel(4);
+                            hotelRooms.get(i).setNumberOfBeds(4);
+                            hotelRooms.get(i).setPrice(priceExecutiveRoom);
+                            if (hotelRooms.get(i).getPetAllowed()) {
+                               hotelRooms.get(i).setPrice(priceExecutiveRoom + pricePetCleaningFee);
                             }
-
-                            hotelRooms.replace(i, hotelRooms.get(i), new RoomObj(((RoomObj) hotelRooms.get(i)).getGuestName(), ((RoomObj) hotelRooms.get(i)).getRoomNumber(), ((RoomObj) hotelRooms.get(i)).getPetAllowed(), ((RoomObj) hotelRooms.get(i)).getNumberOfBeds(), ((RoomObj) hotelRooms.get(i)).getSuiteLevel(), ((RoomObj) hotelRooms.get(i)).getCleanStatus(), ((RoomObj) hotelRooms.get(i)).getPrice()));
                         }
                     }
                 }

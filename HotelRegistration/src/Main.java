@@ -46,23 +46,23 @@ public class Main {
 
             if(input.equals("1")){
 
-                while(true) {
-                    System.out.println("\n1: Check-In A Guest\n2: Check-Out A Guest");
-                    String chkInOrOut = sc.nextLine();
 
-                    if (chkInOrOut.equalsIgnoreCase("1")) {
-                        CheckInOut.guestCheckIn();
+                System.out.println("\n1: Check-In A Guest\n2: Check-Out A Guest");
+                String chkInOrOut = sc.nextLine();
 
-                    } else if (chkInOrOut.equalsIgnoreCase("2")) {
-                        CheckInOut.guestCheckOut();
+                if (chkInOrOut.equalsIgnoreCase("1")) {
+                    CheckInOut.guestCheckIn();
 
-                    } else if(chkInOrOut.equalsIgnoreCase("//")){
-                        break;
-                    }
-                    else {
-                        System.out.println("Response Was Not Recognized! Try Again!");
-                    }
+                } else if (chkInOrOut.equalsIgnoreCase("2")) {
+                    CheckInOut.guestCheckOut();
+
+                } else if(chkInOrOut.equalsIgnoreCase("//")){
+                    break;
                 }
+                else {
+                    System.out.println("Response Was Not Recognized! Try Again!");
+                }
+
 
             }else if(input.equals("2")){
 

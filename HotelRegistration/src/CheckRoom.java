@@ -41,7 +41,7 @@ public class CheckRoom
     }
 
 
-    public static int getVacantRoom(boolean hasPets)
+    public static boolean getVacantRoom(boolean hasPets)
     {
         if (hasPets)
         {
@@ -54,14 +54,15 @@ public class CheckRoom
                     if (guestRoom.get(i).getGuestName().equalsIgnoreCase("vacant"))
                     {
 
-                        return guestRoom.get(i).getRoomNumber();
+                        System.out.println( guestRoom.get(i).getRoomNumber());
+                        return true;
 
                     }
                     else
                     {
 
                         System.out.println("No Pet Friendly Rooms Are Available!");
-                        return -1;
+                        return false;
                     }
                 }
             }
@@ -78,14 +79,15 @@ public class CheckRoom
                     if (guestRoom.get(i).getGuestName().equalsIgnoreCase("vacant"))
                     {
 
-                        return guestRoom.get(i).getRoomNumber();
+
+                        return true;
 
                     }
                 }
             }
         }
         System.out.println("***No Vacant Rooms Available!***");
-        return -1;
+        return false;
     }
 
 

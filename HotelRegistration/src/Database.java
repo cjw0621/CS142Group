@@ -28,7 +28,7 @@ public class Database
         try
         {
             if(HOTEL_DB_FILE.delete()){
-                System.out.println("File Has Been Update");
+                System.out.println("\nFile Has Been Update\n");
             }
 
             if(HOTEL_DB_FILE.createNewFile()){
