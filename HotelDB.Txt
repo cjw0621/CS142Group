@@ -1,5 +1,0 @@
-0:[vacant,1,true,1,1,green,29.99]
-1:[vacant,2,true,2,2,green,39.99]
-2:[vacant,3,true,3,3,green,49.99]
-3:[vacant,4,true,3,3,green,49.99]
-4:[vacant,5,true,4,4,green,59.99]

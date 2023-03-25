@@ -7,6 +7,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String exit = "//";
         final File HOTEL_DB_FILE = new File("HotelDB.txt");
+        final File MANAGER_DB_FILE = new File("ManagerDB.txt");
 
 
         System.out.println("Welcome!\n");
@@ -17,6 +18,13 @@ public class Main {
             System.out.println("------------------------");
             System.out.println("Hotel Employee Sign-In:");
             System.out.println("------------------------");
+
+            while(!MANAGER_DB_FILE.exists()){
+                System.out.println("\n\n** It Looks Like You Don't Have A 'Manager Log-In' Setup! Please Create A " +
+                        "Manager Login To Configure The Hotel! **\n");
+                SignInClass.createLogin();
+            }
+
             System.out.print("1) Sign-In\n2) Create New User\n>> ");
             String userInput = sc.nextLine();
 

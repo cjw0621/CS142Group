@@ -38,17 +38,12 @@ public class CheckInOut
             Number_Of_Minors = HotelConfiguration.stringToInt(numOfMinor);
         }
 
-//RoomObj(String guestName, int roomNumber, boolean petAllowed, int numberOfBeds, int suiteLevel, String cleanStatus,  double price){
+        System.out.print("\n\nPlease choose room tier:                                \n\n" +
 
-//inputting SUITE preference based also on Availability and Price
-        System.out.print("\n\nPlease choose your ROOM preference from following Availabilities and Prices down below                                \n\n" +
-
-                "        TYPES OF ROOMS                       PRICES          AVAILABILITIES      number Of BEDS                                             \n" +
-
-                " (1) Regular Standard SUITE ROOMS: 2                                                                                                        \n" +
-                " (2) Stand Alone ROOMS: 1                                                                                                                   \n" +
-                " (3) Luxury Level SUITE_ROOMS: 3                                                                                                            \n" +
-                " (4) Executive Level SUITE_ROOMS: 4                                                                                                         \n");
+                " (1) Standard ROOMS: 1                                                                                                         \n" +
+                " (2) Standard Tier Suite Rooms: 2                                                                                                                 \n" +
+                " (3) Luxury Tier Suite Rooms: 3                                                                                                            \n" +
+                " (4) Executive Tier Suite Rooms: 4                                                                                                         \n");
 
 
         int suiteLevel = HotelConfiguration.stringToInt(sc.nextLine());
@@ -96,35 +91,27 @@ public class CheckInOut
 
         }
 
-
-
         if(count != roomObj.size()){
             Database.writeHotelDBtoTxt(roomObj);
             System.out.println("Total Price: $" + roomObj.get(CheckRoom.findGuestRoom(guestName)).getPrice());
         } else{
             System.out.println("No Vacancy!");
         }
-
-
     }
 
 
-        public static void guestCheckOut(){
+    public static void guestCheckOut(){
 
-            System.out.println("Please Enter The Guests Room Number To Check Them Out: ");
-            String roomNum = sc.nextLine();
+        System.out.println("Please Enter The Guests Room Number To Check Them Out: ");
+        String roomNum = sc.nextLine();
 
-            if(HotelConfiguration.isNum(roomNum)) {
+        if(HotelConfiguration.isNum(roomNum)) {
 
-                int roomNumInt = HotelConfiguration.stringToInt(roomNum);
+            int roomNumInt = HotelConfiguration.stringToInt(roomNum);
 
-                GuestCheckInOut.checkGuestOut(roomNumInt);
-            }
-
-
-
+            GuestCheckInOut.checkGuestOut(roomNumInt);
         }
-
+    }
 }
 
 
